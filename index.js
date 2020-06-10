@@ -1,32 +1,32 @@
 
-function dynamicallyLoadScript(src, callback) {
-	const script = document.createElement('script');
-	script.src = src;
+function dynamicallyLoadScript(src) {
 
-	script.onreadystatechange = callback;
-	script.onload = callback;
+	return new Promise((resolve, reject) => {
+		const script = document.createElement('script');
+		script.src = src;
+		// script.onreadystatechange = callback; // For old ie 
+		document.body.appendChild(script);
 
-	document.body.appendChild(script);
-}
+		script.onload = () => {
+			resolve();
+		};
 
-dynamicallyLoadScript('./xmlParser.js', function () {
-	xmlParser().initialize('fileChooser');
-});
-
-function foo(event) {
-	event.preventDefault();
-
-	let myForm = document.getElementById('myForm');
-	let formData = new FormData(myForm);
-
-	console.log(myForm);
-	console.log(Array.from(formData));
-
-
+		script.onerror = (error) => {
+			reject(error);
+		}
+	})
 };
 
+Promise.all([
+	dynamicallyLoadScript('./scripts/xmlParser.js'),
+	dynamicallyLoadScript('./scripts/store.js'),
+])
+	.then(() => {
+		const unloader = xmlParser();
+		const store = Store();
 
-
-
-
-
+		unloader.initialize('fileChooser', store.putToStore);
+	})
+	.catch((error) => {
+		console.log(error);
+	});

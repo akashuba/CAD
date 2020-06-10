@@ -5,13 +5,15 @@ function xmlParser() {
 
 	let fileChooserInput;
 	let file;
+	let storeMethod;
 
 	return {
-		initialize(elementId) {
+		initialize(elementId, putToStore) {
 			fileChooserInput = document.getElementById(elementId);
 			fileChooserInput.addEventListener('change', this.readFile.bind(this), false);
+			storeMethod = putToStore;
 
-			console.log('initialized ', this);	
+			console.log('initialized in ', fileChooserInput);
 		},
 
 		async readFile() {
@@ -33,10 +35,16 @@ function xmlParser() {
 			const parser = new DOMParser();
 
 			const xmlDom = parser.parseFromString(xmlRawText, "text/xml");
-			console.log('xmlDom ', xmlDom);
+			// console.log('xmlDom ', xmlDom);
 
-			// const root = xmlDom.getElementsByTagName("root")[0];
-			// root.normalize();
+			const root = xmlDom.getElementsByTagName("root")[0];
+			const normalizedFieldsArray = Array.from(root.childNodes).filter((item) => item.nodeType !== 3);
+
+			storeMethod(normalizedFieldsArray);
+
+			// console.log('xmlDom ', Array.from(root.childNodes).filter((item) =>
+			// 	item.nodeType !== 3)
+			// );
 			// console.log('xmlDom ',  root.childNodes);
 		},
 
