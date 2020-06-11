@@ -42,10 +42,6 @@ function xmlParser() {
 
 			storeMethod(normalizedFieldsArray);
 
-			// console.log('xmlDom ', Array.from(root.childNodes).filter((item) =>
-			// 	item.nodeType !== 3)
-			// );
-			// console.log('xmlDom ',  root.childNodes);
 		},
 
 	}

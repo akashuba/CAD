@@ -23,9 +23,12 @@ Promise.all([
 ])
 	.then(() => {
 		const unloader = xmlParser();
-		const store = Store();
+		const store = store1();
+		store.gatherFields('myForm');
+		console.log('store --> ', store.getFromStore());
+		
 
-		unloader.initialize('fileChooser', store.putToStore);
+		unloader.initialize('fileChooser', store.putToStore.bind(store));
 	})
 	.catch((error) => {
 		console.log(error);
