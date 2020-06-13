@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>CAD</title>
 	</head>
 	<body>
 		<h1>Подбор вент установок</h1>
@@ -12,7 +12,13 @@
 				<input type="text" id="R1C1" name="R1C1" />
 			</div>
 			<div>
-				<input type="text" id="R1C2" name="R1C2" />
+				<select name="R1C2" id="R1C2">
+					<option selected value="0">0</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+				</select>
+				<!-- <input type="text" id="R1C2" name="R1C2" /> -->
 			</div>
 			<div>
 				<input type="text" id="R1C3" name="R1C3" />
@@ -23,13 +29,13 @@
 			<div>
 				<input type="text" id="R1C5" name="R1C5" />
 			</div>
-			<div>
+			<!-- <div>
 				<input type="submit" />
-			</div>
+			</div> -->
 		</form>
-		<!-- <a download="./template.xml" href=""> download xml</a> -->
+		<a download="./template.xml" id="downloadXML" href=""> download xml</a>
 		<div>
-			<input id="fileChooser" type="file" />
+			<input id="fileChooser" type="file" accept=".xml" />
 		</div>
 		<script src="./index.js"></script>
 	</body>
