@@ -1,4 +1,3 @@
-
 function dynamicallyLoadScript(src) {
 	return new Promise((resolve, reject) => {
 		const script = document.createElement('script');
@@ -30,23 +29,18 @@ Promise.all([
 		const emptyXMLTemplate = '<?xml version="1.0" encoding="Windows-1251"?><root></root>'
 
 		unloader.initialize('fileChooser', store.putToStore.bind(store));
-		// Create XML
-
+// Download handler
 		downloadXML.addEventListener('click', (event) => {
 			const domXML = unloader.createXML(emptyXMLTemplate, store.getFromStore());
 			console.log('domXML ', domXML);
-			
+
 			const bb = new Blob([serialize.serializeToString(domXML)], { type: 'text/plain' });
-			
+
 			downloadXML.setAttribute('href', window.URL.createObjectURL(bb));
 			downloadXML.setAttribute('download', 'file.xml');
 			downloadXML.dataset.downloadurl = ['text/plain', downloadXML.download, downloadXML.href].join(':');
-			// event.preventDefault();
-			// downloadXML.click();
 		});
 
-
-		// console.log('createXML ', unloader.createXML());
 	})
 	.catch((error) => {
 		console.log(error);

@@ -1,7 +1,5 @@
 function xmlParser() {
-
 	let fileChooserInput;
-	// let file;
 	let storeMethod;
 
 	return {
@@ -18,16 +16,13 @@ function xmlParser() {
 				const reader = new FileReader();
 
 				reader.readAsText(file);
-
 				reader.onerror = () => {
 					console.log(reader.error)
 					reject(reader.error)
 				};
-
 				reader.onload = () => {
 					resolve(reader.result)
 				}
-
 			})
 		},
 
@@ -35,12 +30,11 @@ function xmlParser() {
 			const parser = new DOMParser();
 
 			return parser.parseFromString(xmlRawText, "text/xml");
-			// console.log('xmlDom ', xmlDom);
 		},
 
 		async putDataToStore(event) {
-
 			const file = fileChooserInput?.files[0]
+
 			if (file) {
 				const fileRead = await this.readFile(file);
 
@@ -57,13 +51,11 @@ function xmlParser() {
 		},
 
 		createXML(template, store) {
-			
 			const domXML = this.parseTextAsXml(template);
 			const root = domXML.getElementsByTagName("root")[0];
 			const xmlNodes = [];
 
 			if (store?.fields) {
-				
 				Object.entries(store.fields).forEach(element => {
 					const xmlNode = domXML.createElement(element[0]);
 
@@ -72,7 +64,7 @@ function xmlParser() {
 				})
 			}
 			root.append(...xmlNodes);
-			
+
 			return domXML;
 		}
 	}

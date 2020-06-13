@@ -33,7 +33,6 @@ function mainStore () {
 
 		resetFields() {
 			for (const key in store?.fields) {
-
 				if (store.fields[key].type === 'text') {
 					store.fields[key].value = '';	
 				}
