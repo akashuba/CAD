@@ -9,3 +9,8 @@ body {
 	Helvetica Neue,
 	sans-serif;
 }
+
+#myForm {
+	width: 500px;
+	padding: 20px;
+}
