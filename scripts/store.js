@@ -45,9 +45,22 @@ function mainStore () {
 		onInputChange(event) {
 			const changedField = event.currentTarget;
 
-			if (store.fields[changedField?.id]) {
-				store.fields[changedField?.id].value = changedField.value;
-			}
+			store.fields[changedField?.id] = changedField;
+			console.log(this.getFromStore());
+			
+
+			// if (store.fields[changedField?.id]) {
+			// 	store.fields[changedField?.id].value = changedField.value;
+			// }
+		},
+
+		appendInputHandler(formId) {
+			const form = document.getElementById(formId);
+			const confFields = form.querySelectorAll('input, select');
+		
+			confFields.forEach(field => {
+				field.onchange = this.onInputChange.bind(this);
+			})
 		}
 	}
 }
