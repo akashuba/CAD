@@ -15,6 +15,11 @@ export default {
 	components: {
 		MotorCheckboxes,
 	},
+	data() {
+		return {
+			status: 'not_accepted',
+		}
+	},
 }
 </script>
 
