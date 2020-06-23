@@ -13,7 +13,8 @@ export default new Vuex.Store({
 			R1: {
 				C1: '',
 				C2: false,
-				C3: null
+				C3: null,
+				C11: 0,
 			},
 		},
 	},
@@ -26,5 +27,7 @@ export default new Vuex.Store({
 	modules: {},
 	getters: {
 		ventUnits: state => state.ventUnits,
+		ventSupplyUnit: state => state.ventUnits[state.currentSupply],
+		ventExhaustUnit: state => state.ventUnits[state.currentExhaust],
 	},
 })

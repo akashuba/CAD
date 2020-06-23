@@ -1,5 +1,5 @@
 <template>
-	<div class="motorCheckboxes">
+	<div class="sensorCheckboxes">
 
 		<b-form-checkbox
 			id="C20"
@@ -42,7 +42,7 @@ import { mutations } from '../../../store/constants'
 import { mapState } from 'vuex'
 
 export default {
-	name: 'MotorCheckboxes',
+	name: 'SensorsCheckboxes',
 	computed: mapState({
 		currentSupply: state => state.currentSupply,
 		ventUnit: state => state.ventUnits[state.currentSupply],

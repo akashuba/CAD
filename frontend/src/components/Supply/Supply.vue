@@ -1,19 +1,19 @@
 <template>
 	<div class="supplyContainer">
-		<MotorCheckboxes />
+		<Modules options  />
 	</div>
 </template>
 
 <script>
-import MotorCheckboxes from './components/MotorCheckboxes.vue'
+// import MotorCheckboxes from './components/MotorCheckboxes.vue'
+import Modules from './components/Modules.vue'
 
 export default {
 	name: 'Supply',
-	// props: {
-	// 	msg: String,
-	// },
+
 	components: {
-		MotorCheckboxes,
+		// MotorCheckboxes,
+		Modules,
 	},
 	data() {
 		return {
