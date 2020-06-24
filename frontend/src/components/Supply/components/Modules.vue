@@ -1,6 +1,6 @@
 <template>
 	<div class="modulesContainer">
-		<Module v-bind:options="options" moduleId="C11" />
+		<Module v-bind:options="options" moduleId="C11" v-bind:circuit="1" />
 	</div>
 </template>
 

@@ -9,20 +9,30 @@
 			@change.native="setSelect"
 		>
 		</b-form-select>
+		<div v-if="circuit === 1">
+			<HeatingFirstCircuit />
+		</div>
 	</div>
 </template>
 
 <script>
 import { mutations } from '../../../store/constants'
+import HeatingFirstCircuit from './circuits/HeatingFirstCircuit'
 // import { mapState } from 'vuex'
 
 export default {
 	name: 'Module',
+	components: {
+		HeatingFirstCircuit,
+	},
 	computed: {
 		getVentUnit() {
 			console.log(JSON.parse(JSON.stringify(this.$store.getters.ventUnits)));
 
 			return this.$store.getters.ventSupplyUnit;
+		},
+		getStore() {
+			return this.$store.getters.ventUnits
 		}
 	},
 	// mapState({
@@ -32,6 +42,7 @@ export default {
 	props: {
 		options: Array,
 		moduleId: String,
+		circuit: Number,
 	},
 	methods: {
 		setSelect(event) {
