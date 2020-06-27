@@ -18,9 +18,9 @@
 			резервный двигатель
 		</b-form-checkbox>
 		<b-form-checkbox
-			id="C2"
-			name="C2"
-			:checked="ventUnit['C2']"
+			id="C7"
+			name="C7"
+			:checked="ventUnit['C7']"
 			@change.native="setCheckbox"
 		>
 			выключатель безопасности

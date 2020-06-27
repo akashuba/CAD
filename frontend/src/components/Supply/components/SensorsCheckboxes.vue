@@ -18,9 +18,9 @@
 			Второй фильтр
 		</b-form-checkbox>
 		<b-form-checkbox
-			id="C2"
-			name="C2"
-			:checked="ventUnit['C2']"
+			id="C9"
+			name="C9"
+			:checked="ventUnit['C9']"
 			@change.native="setCheckbox"
 		>
 			датчик наруж темп
