@@ -15,6 +15,7 @@ export default new Vuex.Store({
 				C2: false,
 				C3: null,
 				C11: '0',
+				C15: '0'
 			},
 		},
 	},

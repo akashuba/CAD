@@ -1,6 +1,6 @@
 <template>
 	<div class="contourEquipmentContainer">
-		<b-form-group id="heatingFirstCircle" label="насос" class="group">
+		<b-form-group id="heatingFirstCircle" :label="fieldsIds.label" class="group">
 			<div class="fieldsWrapper">
 				<div class="configItem">
 					<b-form-input
@@ -45,7 +45,7 @@
 					<b-form-select-option value="2">1ф-L3</b-form-select-option>
 					<b-form-select-option value="3">3ф</b-form-select-option>
 				</b-form-select>
-				<div v-if="!isHeater">
+				<div v-if="fieldsIds.reservePump">
 					<b-form-checkbox
 						:id="fieldsIds.reservePump"
 						:name="fieldsIds.reservePump"
@@ -78,7 +78,6 @@ export default {
 			connection: String,
 			reservePump: String,
 		},
-		isHeater: Boolean,
 	},
 	methods: {
 		setCheckbox(event) {

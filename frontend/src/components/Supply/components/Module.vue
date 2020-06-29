@@ -10,16 +10,8 @@
 			@change.native="setSelect"
 		>
 		</b-form-select>
-		<div v-if="getVentUnit[moduleId] === '1'">
-			<ContourEquipment
-				v-bind:fieldsIds="{
-					name: 'C12',
-					current: 'C13',
-					power: 'C14',
-					connection: 'C15',
-					reservePump: 'C16',
-				}"
-			/>
+		<div v-if="contour.first[getVentUnit[moduleId]] !== null" >
+			<ContourEquipment v-bind:fieldsIds="{ ...contour.first[getVentUnit[moduleId]] }" />
 		</div>
 	</div>
 </template>
@@ -27,6 +19,7 @@
 <script>
 import { mutations } from '../../../store/constants'
 import ContourEquipment from './ContourEquipment.vue'
+import { contour } from '../constants'
 // import { mapState } from 'vuex'
 
 export default {
@@ -34,9 +27,11 @@ export default {
 	components: {
 		ContourEquipment,
 	},
+	created() {
+		this.contour = contour
+	},
 	computed: {
 		getVentUnit() {
-			console.log(JSON.parse(JSON.stringify(this.$store.getters.ventUnits)))
 			return this.$store.getters.ventSupplyUnit
 		},
 		getStore() {
@@ -50,7 +45,6 @@ export default {
 	props: {
 		options: Array,
 		moduleId: String,
-		circuit: Number,
 	},
 	methods: {
 		setSelect(event) {
