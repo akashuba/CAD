@@ -1,6 +1,10 @@
 <template>
 	<div class="modulesContainer">
-		<Module v-bind:options="options" moduleId="C11"/>
+		<Module v-bind:options="options.contour1" moduleId="C11" :contourOrder="contourOrder.FIRST" />
+		<Module v-bind:options="options.contour2" moduleId="C21" :contourOrder="contourOrder.SECOND" />
+		<Module v-bind:options="options.contour3" moduleId="C31" :contourOrder="contourOrder.THIRD" />
+		<Module v-bind:options="options.contour4" moduleId="C41" :contourOrder="contourOrder.FROURTH" />
+		<Module v-bind:options="options.contour5" moduleId="C51" :contourOrder="contourOrder.FIFTH" />
 	</div>
 </template>
 
@@ -8,36 +12,64 @@
 // import { mutations } from '../../../store/constants'
 // import { mapState } from 'vuex'
 import Module from './Module.vue'
+import { contourOrder } from '../constants'
 
 export default {
 	name: 'Modules',
 	components: {
 		Module,
 	},
+
+	created() {
+		this.contourOrder = contourOrder
+	},
+
 	data: function() {
 		return {
-			options: [
-				{ value: 0, text: 'нет' },
-				{ value: 1, text: 'нагрев 1 конт.' },
-				{ value: 2, text: 'рекуп. ротор.' },
-				{ value: 3, text: 'рекуп. гликоль' },
-				{ value: 4, text: 'рециркуляция' },
-				{ value: 5, text: 'электронагрев' },
-			],
+			options: {
+				contour1: [
+					{ value: 0, text: 'нет' },
+					{ value: 1, text: 'нагрев 1 конт.' },
+					{ value: 2, text: 'рекуп. ротор.' },
+					{ value: 3, text: 'рекуп. гликоль' },
+					{ value: 4, text: 'рециркуляция' },
+					{ value: 5, text: 'электронагрев' },
+				],
+				contour2: [
+					{ value: 0, text: 'нет' },
+					{ value: 1, text: 'нагрев 1 конт.' },
+					{ value: 2, text: 'охлажд. вода' },
+					{ value: 3, text: 'охлажд. фреон' },
+					{ value: 4, text: 'рециркуляция' },
+					{ value: 5, text: 'электронагрев' },
+				],
+				contour3: [
+					{ value: 0, text: 'нет' },
+					{ value: 1, text: 'нагрев 2 конт.' },
+					{ value: 2, text: 'охлажд. вода' },
+					{ value: 3, text: 'охлажд. фреон' },
+				],
+				contour4: [
+					{ value: 0, text: 'нет' },
+					{ value: 1, text: 'нагрев 2 конт.' },
+					{ value: 2, text: 'пароувлаж.' },
+					{ value: 3, text: 'камера орошен.' },
+				],
+				contour5: [
+					{ value: 0, text: 'нет' },
+					{ value: 1, text: 'нагрев 2 конт.' },
+					{ value: 2, text: 'пароувлаж.' },
+					{ value: 3, text: 'камера орошен.' },
+				],
+			},
 		}
 	},
-	// computed: mapState({
-	// 	currentSupply: state => state.currentSupply,
-	// 	ventUnit: state => state.ventUnits[state.currentSupply],
-	// }),
-	// props: {
-	// 	options: Array,
-	// },
 }
 </script>
 
 <style scoped>
 .modulesContainer {
 	width: 850px;
+	display: flex;
 }
 </style>

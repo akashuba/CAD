@@ -10,8 +10,8 @@
 			@change.native="setSelect"
 		>
 		</b-form-select>
-		<div v-if="contour.first[getVentUnit[moduleId]] !== null" >
-			<ContourEquipment v-bind:fieldsIds="{ ...contour.first[getVentUnit[moduleId]] }" />
+		<div v-if="contour[contourOrder][getVentUnit[moduleId]] !== null">
+			<ContourEquipment v-bind:fieldsIds="{ ...contour[contourOrder][getVentUnit[moduleId]] }" />
 		</div>
 	</div>
 </template>
@@ -27,9 +27,17 @@ export default {
 	components: {
 		ContourEquipment,
 	},
+
+	props: {
+		options: Array,
+		moduleId: String,
+		contourOrder: String,
+	},
+
 	created() {
 		this.contour = contour
 	},
+
 	computed: {
 		getVentUnit() {
 			return this.$store.getters.ventSupplyUnit
@@ -42,10 +50,6 @@ export default {
 	// 	currentSupply: state => state.currentSupply,
 	// 	ventUnit: state => state.ventUnits[state.currentSupply],
 	// }),
-	props: {
-		options: Array,
-		moduleId: String,
-	},
 	methods: {
 		setSelect(event) {
 			this.$store.commit(mutations.SET_FIELD, {
@@ -60,5 +64,6 @@ export default {
 <style scoped>
 .moduleContainer {
 	width: 160px;
+	margin-right: 30px;
 }
 </style>
