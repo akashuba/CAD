@@ -1,10 +1,10 @@
 <template>
 	<div class="modulesContainer">
-		<Module v-bind:options="options.contour1" moduleId="C11" :contourOrder="contourOrder.FIRST" />
-		<Module v-bind:options="options.contour2" moduleId="C21" :contourOrder="contourOrder.SECOND" />
-		<Module v-bind:options="options.contour3" moduleId="C31" :contourOrder="contourOrder.THIRD" />
-		<Module v-bind:options="options.contour4" moduleId="C41" :contourOrder="contourOrder.FROURTH" />
-		<Module v-bind:options="options.contour5" moduleId="C51" :contourOrder="contourOrder.FIFTH" />
+		<Module :options="options.contour1" moduleId="C11" :contourOrder="contourOrder.FIRST" />
+		<Module :options="options.contour2" moduleId="C21" :contourOrder="contourOrder.SECOND" />
+		<Module :options="options.contour3" moduleId="C31" :contourOrder="contourOrder.THIRD" />
+		<Module :options="options.contour4" moduleId="C41" :contourOrder="contourOrder.FROURTH" />
+		<Module :options="options.contour5" moduleId="C51" :contourOrder="contourOrder.FIFTH" />
 	</div>
 </template>
 
