@@ -9,6 +9,7 @@
 						size="sm"
 						:value="ventUnit[fieldsIds.name]"
 						@input.native="setInput"
+						class="custom-input"
 					></b-form-input>
 					<label class="inputLabel" :for="fieldsIds.name">обозн</label>
 				</div>
@@ -19,6 +20,7 @@
 						size="sm"
 						:value="ventUnit[fieldsIds.current]"
 						@input.native="setInput"
+						class="custom-input"
 					></b-form-input>
 					<label class="inputLabel" :for="fieldsIds.current">ток (А)</label>
 				</div>
@@ -29,11 +31,12 @@
 						size="sm"
 						:value="ventUnit[fieldsIds.power]"
 						@input.native="setInput"
+						class="custom-input"
 					></b-form-input>
 					<label class="inputLabel" :for="fieldsIds.power">мощн.&#160;(кВт)</label>
 				</div>
 				<b-form-select
-					class="mb-3"
+					class="mb-3 custom-input"
 					:id="fieldsIds.connection"
 					:name="fieldsIds.connection"
 					size="sm"
@@ -104,7 +107,7 @@ export default {
 
 <style scoped>
 .contourEquipmentContainer {
-	width: 140px;
+	width: 100%;
 }
 
 .configItem {
@@ -125,5 +128,9 @@ export default {
 .inputLabel {
 	white-space: nowrap;
 	padding-left: 10px;
+}
+
+.custom-input {
+	font-size: 12px;
 }
 </style>

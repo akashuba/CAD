@@ -1,7 +1,7 @@
 <template>
 	<div class="moduleContainer">
 		<b-form-select
-			class="mb-3"
+			class="mb-3 custom-input"
 			size="sm"
 			:id="moduleId"
 			:name="moduleId"
@@ -63,7 +63,11 @@ export default {
 
 <style scoped>
 .moduleContainer {
-	width: 160px;
+	width: 110px;
 	margin-right: 30px;
+}
+
+.custom-input {
+	font-size: 12px;
 }
 </style>

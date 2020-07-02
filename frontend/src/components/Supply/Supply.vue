@@ -1,12 +1,14 @@
 <template>
 	<div class="supplyContainer">
-		<Modules options  />
+		<Scheme />
+		<Modules />
 	</div>
 </template>
 
 <script>
 // import MotorCheckboxes from './components/MotorCheckboxes.vue'
 import Modules from './components/Modules.vue'
+import Scheme from './components/Scheme.vue'
 
 export default {
 	name: 'Supply',
@@ -14,6 +16,7 @@ export default {
 	components: {
 		// MotorCheckboxes,
 		Modules,
+		Scheme,
 	},
 	data() {
 		return {
@@ -23,5 +26,4 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped></style>
