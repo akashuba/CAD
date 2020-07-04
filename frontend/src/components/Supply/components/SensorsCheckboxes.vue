@@ -4,6 +4,7 @@
 		<b-form-checkbox
 			id="C20"
 			name="C20"
+			class="sensorCheckbox"
 			:checked="ventUnit['C20']"
 			@change.native="setCheckbox"
 		>
@@ -12,6 +13,7 @@
 		<b-form-checkbox
 			id="C8"
 			name="C8"
+			class="sensorCheckbox"
 			:checked="ventUnit['C8']"
 			@change.native="setCheckbox"
 		>
@@ -20,6 +22,7 @@
 		<b-form-checkbox
 			id="C9"
 			name="C9"
+			class="sensorCheckbox"
 			:checked="ventUnit['C9']"
 			@change.native="setCheckbox"
 		>
@@ -28,10 +31,11 @@
 		<b-form-checkbox
 			id="C10"
 			name="C10"
+			class="sensorCheckbox"
 			:checked="ventUnit['C10']"
 			@change.native="setCheckbox"
 		>
-	        датчик CO 
+			датчик CO 
 		</b-form-checkbox>
 
 	</div>
@@ -51,7 +55,7 @@ export default {
 		setCheckbox(event) {
 			this.$store.commit(mutations.SET_FIELD, {
 				unit: event.target.name,
-				data: `${event.target.checked}`,
+				data: event.target.checked,
 			})
 		},
 	},
@@ -59,7 +63,14 @@ export default {
 </script>
 
 <style scoped>
-	.motorCheckboxes {
-		width: 150px;
+	.sensorCheckboxes {
+		width: 120px;
+		margin-right: 30px;
+	}
+
+	.sensorCheckbox {
+		width: 100%;
+		font-size: 12px;
+		text-align: left;
 	}
 </style>

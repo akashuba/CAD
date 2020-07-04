@@ -4,6 +4,7 @@
 		<b-form-checkbox
 			id="C5"
 			name="C5"
+			class="motorCheckbox"
 			:checked="ventUnit['C5']"
 			@change.native="setCheckbox"
 		>
@@ -12,6 +13,7 @@
 		<b-form-checkbox
 			id="C6"
 			name="C6"
+			class="motorCheckbox"
 			:checked="ventUnit['C6']"
 			@change.native="setCheckbox"
 		>
@@ -20,6 +22,7 @@
 		<b-form-checkbox
 			id="C7"
 			name="C7"
+			class="motorCheckbox"
 			:checked="ventUnit['C7']"
 			@change.native="setCheckbox"
 		>
@@ -43,7 +46,7 @@ export default {
 		setCheckbox(event) {
 			this.$store.commit(mutations.SET_FIELD, {
 				unit: event.target.name,
-				data: `${event.target.checked}`,
+				data: event.target.checked,
 			})
 		},
 	},
@@ -52,6 +55,13 @@ export default {
 
 <style scoped>
 	.motorCheckboxes {
-		width: 150px;
+		width: 140px;
+		align-self: flex-end;
+		font-size: 12px;
+	}
+
+	.motorCheckbox {
+		margin-bottom: 5px;
+		text-align: left;
 	}
 </style>

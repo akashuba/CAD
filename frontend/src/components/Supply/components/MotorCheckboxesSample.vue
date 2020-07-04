@@ -48,7 +48,7 @@ export default {
 		setCheckbox(event) {
 			this.$store.commit(mutations.SET_FIELD, {
 				unit: event.target.name,
-				data: `${event.target.checked}`,
+				data: event.target.checked,
 			})
 		},
 		setInput(event) {
