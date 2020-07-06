@@ -1,9 +1,9 @@
 <template>
 	<div class="motorCheckboxes">
-
 		<b-form-checkbox
 			id="C5"
 			name="C5"
+			size="sm"
 			class="motorCheckbox"
 			:checked="ventUnit['C5']"
 			@change.native="setCheckbox"
@@ -13,6 +13,7 @@
 		<b-form-checkbox
 			id="C6"
 			name="C6"
+			size="sm"
 			class="motorCheckbox"
 			:checked="ventUnit['C6']"
 			@change.native="setCheckbox"
@@ -22,13 +23,13 @@
 		<b-form-checkbox
 			id="C7"
 			name="C7"
+			size="sm"
 			class="motorCheckbox"
 			:checked="ventUnit['C7']"
 			@change.native="setCheckbox"
 		>
 			выключатель безопасности
 		</b-form-checkbox>
-
 	</div>
 </template>
 
@@ -39,8 +40,8 @@ import { mapState } from 'vuex'
 export default {
 	name: 'MotorCheckboxes',
 	computed: mapState({
-		currentSupply: state => state.currentSupply,
-		ventUnit: state => state.ventUnits[state.currentSupply],
+		currentSupply: (state) => state.currentSupply,
+		ventUnit: (state) => state.ventUnits[state.currentSupply],
 	}),
 	methods: {
 		setCheckbox(event) {
@@ -54,14 +55,13 @@ export default {
 </script>
 
 <style scoped>
-	.motorCheckboxes {
-		width: 140px;
-		align-self: flex-end;
-		font-size: 12px;
-	}
+.motorCheckboxes {
+	width: 140px;
+	align-self: flex-end;
+}
 
-	.motorCheckbox {
-		margin-bottom: 5px;
-		text-align: left;
-	}
+.motorCheckbox {
+	margin-bottom: 5px;
+	text-align: left;
+}
 </style>

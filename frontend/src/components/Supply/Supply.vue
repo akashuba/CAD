@@ -5,7 +5,7 @@
 			<MotorCheckboxes />
 		</div>
 		<div class="lowerBlock">
-		<SensorsCheckboxes />
+			<SensorsCheckboxes />
 			<Modules />
 		</div>
 	</div>
@@ -35,7 +35,8 @@ export default {
 </script>
 
 <style scoped>
-	.sypplyUpperBlock, .lowerBlock {
-		display: flex;
-	}
+.sypplyUpperBlock,
+.lowerBlock {
+	display: flex;
+}
 </style>

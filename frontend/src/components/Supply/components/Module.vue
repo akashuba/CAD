@@ -11,7 +11,9 @@
 		>
 		</b-form-select>
 		<div v-if="contour[contourOrder][getVentUnit[moduleId]] !== null">
-			<ContourEquipment v-bind:fieldsIds="{ ...contour[contourOrder][getVentUnit[moduleId]] }" />
+			<ContourEquipment
+				v-bind:fieldsIds="{ ...contour[contourOrder][getVentUnit[moduleId]] }"
+			/>
 		</div>
 	</div>
 </template>

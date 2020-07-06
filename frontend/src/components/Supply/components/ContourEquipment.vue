@@ -70,8 +70,8 @@ import { mapState } from 'vuex'
 export default {
 	name: 'ContourEquipment',
 	computed: mapState({
-		currentSupply: state => state.currentSupply,
-		ventUnit: state => state.ventUnits[state.currentSupply],
+		currentSupply: (state) => state.currentSupply,
+		ventUnit: (state) => state.ventUnits[state.currentSupply],
 	}),
 	props: {
 		fieldsIds: {
