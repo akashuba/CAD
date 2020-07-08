@@ -13,6 +13,7 @@
 					></b-form-input>
 					<label class="inputLabel" :for="fieldsIds.name">обозн</label>
 				</div>
+
 				<div class="configItem">
 					<b-form-input
 						:id="fieldsIds.current"
@@ -24,6 +25,7 @@
 					></b-form-input>
 					<label class="inputLabel" :for="fieldsIds.current">ток (А)</label>
 				</div>
+
 				<div class="configItem">
 					<b-form-input
 						:id="fieldsIds.power"
@@ -35,19 +37,12 @@
 					></b-form-input>
 					<label class="inputLabel" :for="fieldsIds.power">мощн.&#160;(кВт)</label>
 				</div>
-				<b-form-select
-					class="mb-3 custom-input"
-					:id="fieldsIds.connection"
-					:name="fieldsIds.connection"
-					size="sm"
-					:value="ventUnit[fieldsIds.connection]"
-					@change.native="setSelect"
-				>
-					<b-form-select-option value="0">1ф-L1</b-form-select-option>
-					<b-form-select-option value="1">1ф-L2</b-form-select-option>
-					<b-form-select-option value="2">1ф-L3</b-form-select-option>
-					<b-form-select-option value="3">3ф</b-form-select-option>
-				</b-form-select>
+
+				<PhaseSelector
+					:selectId="fieldsIds.connection"
+					:selectValue="ventUnit[fieldsIds.connection]"
+				/>
+
 				<div v-if="fieldsIds.reservePump">
 					<b-form-checkbox
 						:id="fieldsIds.reservePump"
@@ -66,9 +61,14 @@
 <script>
 import { mutations } from '../../../store/constants'
 import { mapState } from 'vuex'
+import PhaseSelector from '../../common/PhaseSelector.vue'
 
 export default {
 	name: 'ContourEquipment',
+	components: {
+		PhaseSelector,
+	},
+
 	computed: mapState({
 		currentSupply: (state) => state.currentSupply,
 		ventUnit: (state) => state.ventUnits[state.currentSupply],
@@ -132,5 +132,6 @@ export default {
 
 .custom-input {
 	font-size: 12px;
+	padding: 2px 4px;
 }
 </style>

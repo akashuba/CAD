@@ -7,6 +7,7 @@
 		<div class="lowerBlock">
 			<SensorsCheckboxes />
 			<Modules />
+			<MotorSupply />
 		</div>
 	</div>
 </template>
@@ -16,6 +17,7 @@ import MotorCheckboxes from './components/MotorCheckboxes.vue'
 import SensorsCheckboxes from './components/SensorsCheckboxes.vue'
 import Modules from './components/Modules.vue'
 import Scheme from './components/Scheme.vue'
+import MotorSupply from '../common/MotorSupply.vue'
 
 export default {
 	name: 'Supply',
@@ -25,6 +27,7 @@ export default {
 		Modules,
 		Scheme,
 		SensorsCheckboxes,
+		MotorSupply,
 	},
 	data() {
 		return {
@@ -39,4 +42,8 @@ export default {
 .lowerBlock {
 	display: flex;
 }
+.lowerBlock {
+	padding-top: 10px;
+}
+
 </style>

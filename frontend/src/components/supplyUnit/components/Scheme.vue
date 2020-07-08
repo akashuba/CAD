@@ -35,37 +35,37 @@ export default {
 			images: {
 				contourOne: {
 					['0']: '',
-					['1']: require('../images/1_cont.jpg'),
-					['2']: require('../images/rekup_rotor.jpg'),
-					['3']: require('../images/rekup_afreez.jpg'),
-					['4']: '',
-					['5']: require('../images/elektr.jpg'),
+					['1']: require('../../../assets/vent/1_cont.jpg'),
+					['2']: require('../../../assets/vent/rekup_rotor.jpg'),
+					['3']: require('../../../assets/vent/rekup_afreez.jpg'),
+					['4']: require('../../../assets/vent/recircul.jpg'),
+					['5']: require('../../../assets/vent/elektr.jpg'),
 				},
 				contourTwo: {
 					['0']: '',
-					['1']: require('../images/1_cont.jpg'),
-					['2']: require('../images/ohl.jpg'),
-					['3']: require('../images/ohl _freon.jpg'),
-					['4']: '',
-					['5']: require('../images/elektr.jpg'),
+					['1']: require('../../../assets/vent/1_cont.jpg'),
+					['2']: require('../../../assets/vent/ohl.jpg'),
+					['3']: require('../../../assets/vent/ohl_freon.jpg'),
+					['4']: require('../../../assets/vent/recircul.jpg'),
+					['5']: require('../../../assets/vent/elektr.jpg'),
 				},
 				contourThree: {
 					['0']: '',
-					['1']: require('../images/2_cont.jpg'),
-					['2']: require('../images/ohl.jpg'),
-					['3']: require('../images/ohl _freon.jpg'),
+					['1']: require('../../../assets/vent/2_cont.jpg'),
+					['2']: require('../../../assets/vent/ohl.jpg'),
+					['3']: require('../../../assets/vent/ohl_freon.jpg'),
 				},
 				contourFour: {
 					['0']: '',
-					['1']: require('../images/2_cont.jpg'),
-					['2']: require('../images/uvl2.jpg'),
-					['3']: require('../images/uvl.jpg'),
+					['1']: require('../../../assets/vent/2_cont.jpg'),
+					['2']: require('../../../assets/vent/uvl2.jpg'),
+					['3']: require('../../../assets/vent/uvl.jpg'),
 				},
 				contourFive: {
 					['0']: '',
-					['1']: require('../images/2_cont.jpg'),
-					['2']: require('../images/uvl2.jpg'),
-					['3']: require('../images/uvl.jpg'),
+					['1']: require('../../../assets/vent/2_cont.jpg'),
+					['2']: require('../../../assets/vent/uvl2.jpg'),
+					['3']: require('../../../assets/vent/uvl.jpg'),
 				},
 			},
 		}
@@ -116,11 +116,11 @@ export default {
 }
 
 .schemeBgImg1 {
-	background-image: url('../images/main_1.jpg');
+	background-image: url('../../../assets/vent/main_1.jpg');
 }
 
 .schemeBgImg2 {
-	background-image: url('../images/main_2.jpg');
+	background-image: url('../../../assets/vent/main_2.jpg');
 }
 
 .contoureImg {

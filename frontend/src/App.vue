@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Supply from './components/Supply/Supply.vue'
+import Supply from './components/supplyUnit/Supply.vue'
 
 export default {
 	name: 'App',
@@ -23,6 +23,8 @@ export default {
 	text-align: center;
 	color: #2c3e50;
 	margin-top: 60px;
+	background-color: #bfcddb;
+	/* min-width: 1560px; */
 }
 
 label {

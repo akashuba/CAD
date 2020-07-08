@@ -22,7 +22,6 @@
 import { mutations } from '../../../store/constants'
 import ContourEquipment from './ContourEquipment.vue'
 import { contour } from '../constants'
-// import { mapState } from 'vuex'
 
 export default {
 	name: 'Module',

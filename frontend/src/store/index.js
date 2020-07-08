@@ -12,8 +12,7 @@ export default new Vuex.Store({
 		ventUnits: {
 			R1: {
 				C1: '',
-				C2: false,
-				C3: null,
+				C4: '0',
 				C5: false,
 				C8: false,
 				C9: false,

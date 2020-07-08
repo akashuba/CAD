@@ -1,44 +1,34 @@
 <template>
-	<div class="sensorCheckboxes">
+	<div class="motorCheckboxes">
 		<b-form-checkbox
-			id="C20"
-			name="C20"
+			id="C5"
+			name="C5"
 			size="sm"
-			class="sensorCheckbox"
-			:checked="ventUnit['C20']"
+			class="motorCheckbox"
+			:checked="ventUnit['C5']"
 			@change.native="setCheckbox"
 		>
-			обогрев заслонки
+			частотный преобразователь
 		</b-form-checkbox>
 		<b-form-checkbox
-			id="C8"
-			name="C8"
+			id="C6"
+			name="C6"
 			size="sm"
-			class="sensorCheckbox"
-			:checked="ventUnit['C8']"
+			class="motorCheckbox"
+			:checked="ventUnit['C6']"
 			@change.native="setCheckbox"
 		>
-			Второй фильтр
+			резервный двигатель
 		</b-form-checkbox>
 		<b-form-checkbox
-			id="C9"
-			name="C9"
+			id="C7"
+			name="C7"
 			size="sm"
-			class="sensorCheckbox"
-			:checked="ventUnit['C9']"
+			class="motorCheckbox"
+			:checked="ventUnit['C7']"
 			@change.native="setCheckbox"
 		>
-			датчик наруж темп
-		</b-form-checkbox>
-		<b-form-checkbox
-			id="C10"
-			name="C10"
-			size="sm"
-			class="sensorCheckbox"
-			:checked="ventUnit['C10']"
-			@change.native="setCheckbox"
-		>
-			датчик CO
+			выключатель безопасности
 		</b-form-checkbox>
 	</div>
 </template>
@@ -48,12 +38,11 @@ import { mutations } from '../../../store/constants'
 import { mapState } from 'vuex'
 
 export default {
-	name: 'SensorsCheckboxes',
+	name: 'MotorCheckboxes',
 	computed: mapState({
 		currentSupply: (state) => state.currentSupply,
 		ventUnit: (state) => state.ventUnits[state.currentSupply],
 	}),
-
 	methods: {
 		setCheckbox(event) {
 			this.$store.commit(mutations.SET_FIELD, {
@@ -66,16 +55,14 @@ export default {
 </script>
 
 <style scoped>
-.sensorCheckboxes {
-	min-width: 120px;
-	margin-right: 30px;
-	flex: 0 0 120px;
+.motorCheckboxes {
+	width: 140px;
+	align-self: flex-end;
+	padding-left: 10px;
 }
 
-.sensorCheckbox {
-	width: 100%;
-	min-height: 42px;
-	text-align: left;
+.motorCheckbox {
 	margin-bottom: 5px;
+	text-align: left;
 }
 </style>
