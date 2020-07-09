@@ -133,5 +133,6 @@ export default {
 .custom-input {
 	font-size: 12px;
 	padding: 2px 4px;
+	height: 24px;
 }
 </style>

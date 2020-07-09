@@ -97,7 +97,7 @@ export default {
 	/* display: flex;
 	align-items: center; */
 	text-align: left;
-	margin-bottom: 15px;
+	margin-bottom: 10px;
 }
 
 .fieldsWrapper {
@@ -124,5 +124,6 @@ export default {
 	width: 50px;
 	font-size: 12px;
 	padding: 2px 4px;
+	height: 24px;
 }
 </style>
