@@ -71,6 +71,6 @@ export default {
 .modulesContainer {
 	width: 655px;
 	display: flex;
-	margin-right: 20px;
+	margin-right: 40px;
 }
 </style>

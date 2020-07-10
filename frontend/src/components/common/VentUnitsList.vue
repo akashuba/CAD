@@ -1,29 +1,36 @@
 <template>
 	<div class="ventUnitsListContainer">
-        <div>{{title}}</div>
+		<div class="title">{{ title }}</div>
 		<div class="fieldsWrapper">
-            
-			<div class="configItem">
-				<label class="inputLabel" for="C2">ток (А)</label>
-				<b-form-input
-					id="C2"
-					name="C2"
+			<div class="unitsList">
+				<b-form-select
+					class="mb-3 custom-select"
+					id=""
+					name=""
 					size="sm"
-					:value="ventUnit['C2']"
-					@input.native="setInput"
-					class="custom-input"
-				></b-form-input>
+					@change.native="setSelect"
+					:select-size="5"
+				>
+					<b-form-select-option value="0">П1</b-form-select-option>
+					<b-form-select-option value="1">П2</b-form-select-option>
+					<b-form-select-option value="1">П3</b-form-select-option>
+				</b-form-select>
 			</div>
-			<div class="configItem">
-				<label class="inputLabel" for="C3">мощн. (кВт)</label>
-				<b-form-input
-					id="C3"
-					name="C3"
-					size="sm"
-					:value="ventUnit['C3']"
-					@input.native="setInput"
-					class="custom-input"
-				></b-form-input>
+			<div class="controls">
+				<div class="configItem">
+					<b-form-input
+						id="C1"
+						name="C1"
+						size="sm"
+						:value="ventUnit['C1']"
+						@input.native="setInput"
+						class="custom-input"
+					></b-form-input>
+					<label class="inputLabel" for="C1">название системы</label>
+				</div>
+				<b-button size="sm" variant="outline-dark" class="button">добавить</b-button>
+				<b-button size="sm" variant="outline-dark" class="button">преименовать</b-button>
+				<b-button size="sm" variant="outline-danger" class="button">удалить</b-button>
 			</div>
 		</div>
 	</div>
@@ -34,11 +41,11 @@ import { mutations } from '../../store/constants'
 import { mapState } from 'vuex'
 
 export default {
-    name: 'VentUnitsList',
-    
-    props: {
-        title: String,
-    },
+	name: 'VentUnitsList',
+
+	props: {
+		title: String,
+	},
 
 	computed: mapState({
 		currentSupply: (state) => state.currentSupply,
@@ -64,23 +71,23 @@ export default {
 
 <style scoped>
 .ventUnitsListContainer {
-	width: 230px;
+	width: 250px;
 }
 
 .configItem {
-	/* display: flex;
-	align-items: center; */
+	display: flex;
+	align-items: center;
 	text-align: left;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .fieldsWrapper {
 	display: flex;
+	justify-content: space-between;
 	font-size: 12px;
 }
 
 .inputLabel {
-	/* white-space: nowrap; */
 	padding-left: 10px;
 }
 
@@ -89,4 +96,23 @@ export default {
 	font-size: 12px;
 	padding: 2px 4px;
 }
+
+.unitsList {
+	flex: 0 0 100px;
+}
+
+.controls {
+	flex: 0 0 115px;
+	display: flex;
+	flex-direction: column;
+}
+
+.title {
+	font-size: 14px;
+}
+
+.button {
+	margin-bottom: 5px;
+}
+
 </style>

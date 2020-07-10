@@ -7,7 +7,10 @@
 		<div class="lowerBlock">
 			<SensorsCheckboxes />
 			<Modules />
-			<MotorSupply />
+			<div>
+				<MotorSupply />
+				<VentUnitsList title="список приточных систем"/>
+			</div>
 		</div>
 	</div>
 </template>
@@ -18,6 +21,7 @@ import SensorsCheckboxes from './components/SensorsCheckboxes.vue'
 import Modules from './components/Modules.vue'
 import Scheme from './components/Scheme.vue'
 import MotorSupply from '../common/MotorSupply.vue'
+import VentUnitsList from '../common/VentUnitsList.vue'
 
 export default {
 	name: 'Supply',
@@ -28,6 +32,7 @@ export default {
 		Scheme,
 		SensorsCheckboxes,
 		MotorSupply,
+		VentUnitsList,
 	},
 	data() {
 		return {
@@ -45,5 +50,4 @@ export default {
 .lowerBlock {
 	padding-top: 10px;
 }
-
 </style>

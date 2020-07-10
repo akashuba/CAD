@@ -91,13 +91,14 @@ export default {
 <style scoped>
 .motorSupplyContainer {
 	width: 230px;
+	margin-bottom: 10px;
 }
 
 .configItem {
 	/* display: flex;
 	align-items: center; */
 	text-align: left;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 .fieldsWrapper {
@@ -118,6 +119,7 @@ export default {
 .inputLabel {
 	/* white-space: nowrap; */
 	padding-left: 10px;
+	margin-bottom: 0;
 }
 
 .custom-input {

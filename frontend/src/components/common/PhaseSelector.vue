@@ -1,6 +1,6 @@
 <template>
 	<b-form-select
-		class="mb-3 custom-selectt"
+		class=" custom-select"
 		:id="selectId"
 		:name="selectId"
 		size="sm"
@@ -37,7 +37,8 @@ export default {
 </script>
 
 <style scoped>
-	.custom-select {
-		font-size: 12px;
-	}
+select.custom-select {
+	font-size: 12px;
+	margin: 0px;
+}
 </style>
