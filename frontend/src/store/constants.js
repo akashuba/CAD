@@ -23,3 +23,13 @@ export const defaultSupplyUnit = {
 	C51: '0',
 	C55: '0',
 }
+
+export const defaultExhaustUnit = {
+	C1: 'В1',
+	C4: '0',
+	C5: false,
+	C6: false,
+	C7: false,
+	C8: false,
+	C9: false,
+}

@@ -13,7 +13,7 @@
 			"</template>",
 			"<script>",
 			"export default {",
-			"name: 'Name',",
+			"\tname: '${1:Name}',",
 			"}",
 			"</script>",
 			"<style scoped>",

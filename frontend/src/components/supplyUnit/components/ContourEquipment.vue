@@ -43,7 +43,7 @@
 					:selectValue="ventUnit[fieldsIds.connection]"
 				/>
 
-				<div v-if="fieldsIds.reservePump">
+				<div v-if="fieldsIds.reservePump" class="reservePump">
 					<b-form-checkbox
 						:id="fieldsIds.reservePump"
 						:name="fieldsIds.reservePump"
@@ -134,5 +134,11 @@ export default {
 	font-size: 12px;
 	padding: 2px 4px;
 	height: 24px;
+}
+
+.reservePump {
+	line-height: 24px;
+	text-align: left;
+	margin-top: 10px;
 }
 </style>

@@ -59,6 +59,7 @@ export default {
 <style scoped>
 .moduleContainer {
 	width: 110px;
+	flex: 0 0 110px;
 	margin-right: 30px;
 }
 

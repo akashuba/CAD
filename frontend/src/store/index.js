@@ -8,7 +8,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
 		currentSupply: 'R1',
-		currentExhaust: 'R10',
+		currentExhaust: 'R11',
 		ventUnits: {
 			R1: {
 				...defaultSupplyUnit,
@@ -27,15 +27,23 @@ export default new Vuex.Store({
 		},
 
 		[mutations.REMOVE_CURRENT_SUPPLY](state) {
-			const {[state.currentSupply]: currentSupply, ...rest } = state.ventUnits
-
-			state.ventUnits = {
-				...rest
+			if (state.supplyCount === 1) {
+				state.currentSupply = 'R1'
+				state.ventUnits = {
+					R1: {
+						...defaultSupplyUnit,
+					},
+				}
+			} else {
+				const {[state.currentSupply]: currentSupply, ...rest } = state.ventUnits
+	
+				state.ventUnits = {
+					...rest
+				}
+	
+				state.currentSupply = Object.keys(state.ventUnits)[0]
+				state.supplyCount = state.supplyCount - 1 
 			}
-
-			state.currentSupply = Object.keys(state.ventUnits)[0]
-
-			state.supplyCount = state.supplyCount - 1 
 		},
 
 		[mutations.CREATE_SUPPLY_UNIT](state, payload) {
@@ -50,7 +58,6 @@ export default new Vuex.Store({
 			}
 
 			state.currentSupply = newCurrentSupply
-
 			state.supplyCount = state.supplyCount + 1
 		},
 	},

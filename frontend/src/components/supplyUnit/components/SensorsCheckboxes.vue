@@ -67,9 +67,8 @@ export default {
 
 <style scoped>
 .sensorCheckboxes {
-	min-width: 120px;
 	margin-right: 30px;
-	flex: 0 0 120px;
+	flex: 0 0 118px;
 }
 
 .sensorCheckbox {

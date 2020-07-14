@@ -43,7 +43,7 @@ export const contour = {
 			current: 'C13',
 			power: 'C14',
 			connection: 'C15',
-			label: 'электронагрев',
+			label: 'электронагр.',
 		},
 	},
 	second: {
@@ -69,7 +69,7 @@ export const contour = {
 			current: 'C23',
 			power: 'C24',
 			connection: 'C25',
-			label: 'электронагрев',
+			label: 'электронагр.',
 		},
 	},
 	third: {
