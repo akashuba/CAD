@@ -24,7 +24,9 @@
 						class="custom-input"
 					></b-form-input>
 				</div>
-				<PhaseSelector selectId="C4" :selectValue="ventUnit['C4']" />
+				<div class="phaseSelector">
+					<PhaseSelector selectId="C4" :selectValue="ventUnit['C4']" />
+				</div>
 			</div>
 
 			<div class="cableSide">
@@ -127,5 +129,9 @@ export default {
 	font-size: 12px;
 	padding: 2px 4px;
 	height: 24px;
+}
+
+.phaseSelector {
+	margin-top: 15px;
 }
 </style>

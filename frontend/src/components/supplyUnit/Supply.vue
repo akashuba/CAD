@@ -9,7 +9,7 @@
 			<Modules />
 			<div>
 				<MotorSupply />
-				<VentUnitsList title="список приточных систем"/>
+				<VentUnitsList title="приточные системы:"/>
 			</div>
 		</div>
 	</div>
@@ -43,10 +43,15 @@ export default {
 </script>
 
 <style scoped>
+.supplyContainer {
+	padding: 10px;
+}
+
 .sypplyUpperBlock,
 .lowerBlock {
 	display: flex;
 }
+
 .lowerBlock {
 	padding-top: 10px;
 }

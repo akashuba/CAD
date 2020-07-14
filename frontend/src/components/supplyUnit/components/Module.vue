@@ -43,14 +43,8 @@ export default {
 		getVentUnit() {
 			return this.$store.getters.ventSupplyUnit
 		},
-		getStore() {
-			return this.$store.getters.ventUnits
-		},
 	},
-	// mapState({
-	// 	currentSupply: state => state.currentSupply,
-	// 	ventUnit: state => state.ventUnits[state.currentSupply],
-	// }),
+
 	methods: {
 		setSelect(event) {
 			this.$store.commit(mutations.SET_FIELD, {

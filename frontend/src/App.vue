@@ -1,16 +1,19 @@
 <template>
 	<div id="app">
+		<Header />
 		<Supply />
 	</div>
 </template>
 
 <script>
 import Supply from './components/supplyUnit/Supply.vue'
+import Header from './components/common/Header.vue'
 
 export default {
 	name: 'App',
 	components: {
 		Supply,
+		Header,
 	},
 }
 </script>
@@ -22,7 +25,6 @@ export default {
 	-moz-osx-font-smoothing: grayscale;
 	text-align: center;
 	color: #2c3e50;
-	margin-top: 60px;
 	background-color: #bfcddb;
 	/* min-width: 1560px; */
 }

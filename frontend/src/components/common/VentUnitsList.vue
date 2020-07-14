@@ -5,52 +5,68 @@
 			<div class="unitsList">
 				<b-form-select
 					class="mb-3 custom-select"
-					id=""
-					name=""
+					id="unitsList"
+					name="unitsList"
 					size="sm"
-					@change.native="setSelect"
+					:options="options"
+					@change.native="selectCurrentUnit"
 					:select-size="5"
 				>
-					<b-form-select-option value="0">П1</b-form-select-option>
-					<b-form-select-option value="1">П2</b-form-select-option>
-					<b-form-select-option value="1">П3</b-form-select-option>
 				</b-form-select>
 			</div>
 			<div class="controls">
 				<div class="configItem">
 					<b-form-input
-						id="C1"
-						name="C1"
+						id="unitName"
+						name="unitName"
 						size="sm"
-						:value="ventUnit['C1']"
-						@input.native="setInput"
+						:value="ventUnitName"
+						@input.native="onVentUnitNameChangeLocaly"
 						class="custom-input"
 					></b-form-input>
-					<label class="inputLabel" for="C1">название системы</label>
+					<label class="inputLabel" for="unitName">название системы</label>
 				</div>
-				<b-button size="sm" variant="outline-dark" class="button">добавить</b-button>
-				<b-button size="sm" variant="outline-dark" class="button">преименовать</b-button>
-				<b-button size="sm" variant="outline-danger" class="button">удалить</b-button>
+				<b-button size="sm" variant="outline-dark" class="button" @click="createVentUnit">добавить</b-button>
+				<b-button size="sm" variant="outline-dark" class="button">изменить</b-button>
+				<b-button size="sm" variant="outline-danger" class="button" @click="onRemoveButtonClick">удалить</b-button>
 			</div>
 		</div>
 	</div>
 </template>
-
 <script>
+
 import { mutations } from '../../store/constants'
-import { mapState } from 'vuex'
 
 export default {
 	name: 'VentUnitsList',
+
+	data() {
+		return {
+			ventUnitName: '',
+		}
+	},
 
 	props: {
 		title: String,
 	},
 
-	computed: mapState({
-		currentSupply: (state) => state.currentSupply,
-		ventUnit: (state) => state.ventUnits[state.currentSupply],
-	}),
+	updated() {
+		console.log(JSON.parse(JSON.stringify(this.$store.getters.ventUnitsNames)))
+	},
+
+	computed: {
+		currentVentUnit() {
+			return this.$store.getters.ventSupplyUnit
+		},
+		options() {
+			const ventUnits = this.$store.getters.ventUnits
+			const ventUnitsNumbers = Object.keys(this.$store.getters.ventUnits)
+
+			return ventUnitsNumbers.map((number) => {
+				return { value: number, text: ventUnits[number]['C1'] }
+			})
+		},
+	},
 
 	methods: {
 		setInput(event) {
@@ -59,12 +75,26 @@ export default {
 				data: `${event.target.value}`,
 			})
 		},
-		setSelect(event) {
-			this.$store.commit(mutations.SET_FIELD, {
-				unit: event.target.name,
-				data: `${event.target.value}`,
+
+		selectCurrentUnit(event) {
+			this.$store.commit(mutations.SELECT_CURRENT_SUPPLY, {
+				currentSupply: event.target.value,
 			})
 		},
+
+		createVentUnit() {
+			this.$store.commit(mutations.CREATE_SUPPLY_UNIT, {
+				name: this.ventUnitName,
+			})
+		},
+
+		onVentUnitNameChangeLocaly(event) {
+			this.ventUnitName = event.target.value;
+		},
+
+		onRemoveButtonClick() {
+			this.$store.commit(mutations.REMOVE_CURRENT_SUPPLY)
+		}
 	},
 }
 </script>
@@ -109,10 +139,10 @@ export default {
 
 .title {
 	font-size: 14px;
+	margin-bottom: 5px;
 }
 
 .button {
 	margin-bottom: 5px;
 }
-
 </style>
