@@ -35,29 +35,27 @@ export default new Vuex.Store({
 					},
 				}
 			} else {
-				const {[state.currentSupply]: currentSupply, ...rest } = state.ventUnits
+				const { [state.currentSupply]: currentSupply, ...rest } = state.ventUnits
 	
-				state.ventUnits = {
-					...rest
-				}
-	
+				state.ventUnits = {	...rest	}
 				state.currentSupply = Object.keys(state.ventUnits)[0]
 				state.supplyCount = state.supplyCount - 1 
 			}
 		},
 
 		[mutations.CREATE_SUPPLY_UNIT](state, payload) {
-			const newCurrentSupply = `R${state.supplyCount + 1}`
+			const newCurrentSupplyName = `R${state.supplyCount + 1}`
+			const newCurrentSupplyConfig = payload?.template ? state.ventUnits[payload?.template] : defaultSupplyUnit
 
-			state.ventUnits = {
-				...state.ventUnits,
-				[newCurrentSupply]: {
-					...state.ventUnits[state.currentSupply],
-					C1: payload.name,
-				},
-			}
+				state.ventUnits = {
+					...state.ventUnits,
+					[newCurrentSupplyName]: {
+						...newCurrentSupplyConfig,
+						C1: payload.name,
+					},
+				}
 
-			state.currentSupply = newCurrentSupply
+			state.currentSupply = newCurrentSupplyName
 			state.supplyCount = state.supplyCount + 1
 		},
 	},
@@ -73,5 +71,6 @@ export default new Vuex.Store({
 
 			return ventUnitsNames
 		},
+		currentSupply: (state) => state.currentSupply,
 	},
 })

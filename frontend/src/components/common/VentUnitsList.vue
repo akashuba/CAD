@@ -8,6 +8,7 @@
 					id="unitsList"
 					name="unitsList"
 					size="sm"
+					:value="getCurrentSupply"
 					:options="options"
 					@change.native="selectCurrentUnit"
 					:select-size="5"
@@ -26,19 +27,41 @@
 					></b-form-input>
 					<label class="inputLabel" for="unitName">название системы</label>
 				</div>
-				<b-button size="sm" variant="outline-dark" class="button" @click="createVentUnit">добавить</b-button>
+				<b-button size="sm" variant="outline-dark" class="button" v-b-modal.modal-create-unit
+					>добавить</b-button
+				>
 				<b-button size="sm" variant="outline-dark" class="button">изменить</b-button>
-				<b-button size="sm" variant="outline-danger" class="button" @click="onRemoveButtonClick">удалить</b-button>
+				<b-button
+					size="sm"
+					variant="outline-danger"
+					class="button"
+					@click="onRemoveButtonClick"
+					>удалить</b-button
+				>
 			</div>
 		</div>
+
+		<b-modal
+			ref="modal-create-unit"
+			id="modal-create-unit"
+			title="Добавить установку"
+			ok-title="добавить"
+			cancel-title="закрыть"
+			hide-footer
+		>
+			<ModalCreateUnit :createVentUnit="createVentUnit" :options="options" />
+		</b-modal>
 	</div>
 </template>
 <script>
-
 import { mutations } from '../../store/constants'
+import ModalCreateUnit from '../common/ModalCreateUnit.vue'
 
 export default {
 	name: 'VentUnitsList',
+	components: {
+		ModalCreateUnit,
+	},
 
 	data() {
 		return {
@@ -51,21 +74,25 @@ export default {
 	},
 
 	updated() {
-		console.log(JSON.parse(JSON.stringify(this.$store.getters.ventUnitsNames)))
+		console.log(this.getCurrentSupply)
 	},
 
 	computed: {
 		currentVentUnit() {
 			return this.$store.getters.ventSupplyUnit
 		},
+
 		options() {
 			const ventUnits = this.$store.getters.ventUnits
 			const ventUnitsNumbers = Object.keys(this.$store.getters.ventUnits)
-
 			return ventUnitsNumbers.map((number) => {
 				return { value: number, text: ventUnits[number]['C1'] }
 			})
 		},
+
+		getCurrentSupply() {
+			return this.$store.getters.currentSupply
+		}
 	},
 
 	methods: {
@@ -82,19 +109,23 @@ export default {
 			})
 		},
 
-		createVentUnit() {
+		createVentUnit(name, template) {
 			this.$store.commit(mutations.CREATE_SUPPLY_UNIT, {
-				name: this.ventUnitName,
+				name,
+				template,
 			})
+
+			this.$refs['modal-create-unit'].hide()
 		},
 
 		onVentUnitNameChangeLocaly(event) {
-			this.ventUnitName = event.target.value;
+			this.ventUnitName = event.target.value
 		},
 
 		onRemoveButtonClick() {
 			this.$store.commit(mutations.REMOVE_CURRENT_SUPPLY)
-		}
+		},
+
 	},
 }
 </script>
