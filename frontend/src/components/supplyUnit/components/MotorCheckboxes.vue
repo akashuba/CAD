@@ -35,14 +35,16 @@
 
 <script>
 import { mutations } from '../../../store/constants'
-import { mapState } from 'vuex'
 
 export default {
 	name: 'MotorCheckboxes',
-	computed: mapState({
-		currentSupply: (state) => state.currentSupply,
-		ventUnit: (state) => state.ventUnits[state.currentSupply],
-	}),
+
+	computed: {
+		ventUnit() {
+			return this.$store.getters.ventSupplyUnit
+		},
+	},
+
 	methods: {
 		setCheckbox(event) {
 			this.$store.commit(mutations.SET_FIELD, {

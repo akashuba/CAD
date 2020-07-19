@@ -7,8 +7,8 @@ Vue.use(Vuex)
 /* eslint-disable no-unused-vars */
 export default new Vuex.Store({
 	state: {
-		currentSupply: 'R1',
-		currentExhaust: 'R11',
+		currentSupplyName: 'R1',
+		currentExhaustName: 'R11',
 		ventUnits: {
 			R1: {
 				...defaultSupplyUnit,
@@ -19,26 +19,32 @@ export default new Vuex.Store({
 	},
 	mutations: {
 		[mutations.SET_FIELD](state, payload) {
-			state.ventUnits[state.currentSupply][payload.unit] = payload.data
+			state.ventUnits = {
+				...state.ventUnits,
+				[state.currentSupplyName]: {
+					...state.ventUnits[state.currentSupplyName],
+					[payload.unit]: payload.data,
+				}
+			}
 		},
 
 		[mutations.SELECT_CURRENT_SUPPLY](state, payload) {
-			state.currentSupply = payload.currentSupply
+			state.currentSupplyName = payload.currentSupplyName
 		},
 
 		[mutations.REMOVE_CURRENT_SUPPLY](state) {
 			if (state.supplyCount === 1) {
-				state.currentSupply = 'R1'
+				state.currentSupplyName = 'R1'
 				state.ventUnits = {
 					R1: {
 						...defaultSupplyUnit,
 					},
 				}
 			} else {
-				const { [state.currentSupply]: currentSupply, ...rest } = state.ventUnits
+				const { [state.currentSupplyName]: currentSupply, ...rest } = state.ventUnits
 	
 				state.ventUnits = {	...rest	}
-				state.currentSupply = Object.keys(state.ventUnits)[0]
+				state.currentSupplyName = Object.keys(state.ventUnits)[0]
 				state.supplyCount = state.supplyCount - 1 
 			}
 		},
@@ -55,7 +61,7 @@ export default new Vuex.Store({
 					},
 				}
 
-			state.currentSupply = newCurrentSupplyName
+			state.currentSupplyName = newCurrentSupplyName
 			state.supplyCount = state.supplyCount + 1
 		},
 	},
@@ -63,14 +69,15 @@ export default new Vuex.Store({
 	modules: {},
 	getters: {
 		ventUnits: (state) => state.ventUnits,
-		ventSupplyUnit: (state) => state.ventUnits[state.currentSupply],
-		ventExhaustUnit: (state) => state.ventUnits[state.currentExhaust],
+		ventSupplyUnit: (state) => state.ventUnits[state.currentSupplyName],
+		ventExhaustUnit: (state) => state.ventUnits[state.currentExhaustName],
 		ventUnitsNames: (state) => {
 			const ventUnits = Object.keys(state.ventUnits)
 			const ventUnitsNames = ventUnits.map((unit) => state.ventUnits[unit]['C1'])
 
 			return ventUnitsNames
 		},
-		currentSupply: (state) => state.currentSupply,
+		currentSupplyName: (state) => state.currentSupplyName,
+		currentExhaustName: (state) => state.currentExhaustName,
 	},
 })

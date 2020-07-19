@@ -71,10 +71,6 @@ export default {
 		}
 	},
 	computed: {
-		currentSupply() {
-			return this.$store.getters.currentSupply
-		},
-
 		ventUnit() {
 			return this.$store.getters.ventSupplyUnit
 		},

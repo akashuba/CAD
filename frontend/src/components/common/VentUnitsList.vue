@@ -16,7 +16,7 @@
 				</b-form-select>
 			</div>
 			<div class="controls">
-				<div class="configItem">
+				<!-- <div class="configItem">
 					<b-form-input
 						id="unitName"
 						name="unitName"
@@ -26,11 +26,15 @@
 						class="custom-input"
 					></b-form-input>
 					<label class="inputLabel" for="unitName">название системы</label>
-				</div>
-				<b-button size="sm" variant="outline-dark" class="button" v-b-modal.modal-create-unit
+				</div> -->
+				<b-button
+					size="sm"
+					variant="outline-dark"
+					class="button"
+					v-b-modal.modal-create-unit
 					>добавить</b-button
 				>
-				<b-button size="sm" variant="outline-dark" class="button">изменить</b-button>
+				<!-- <b-button size="sm" variant="outline-dark" class="button">изменить</b-button> -->
 				<b-button
 					size="sm"
 					variant="outline-danger"
@@ -73,10 +77,6 @@ export default {
 		title: String,
 	},
 
-	updated() {
-		console.log(this.getCurrentSupply)
-	},
-
 	computed: {
 		currentVentUnit() {
 			return this.$store.getters.ventSupplyUnit
@@ -91,8 +91,8 @@ export default {
 		},
 
 		getCurrentSupply() {
-			return this.$store.getters.currentSupply
-		}
+			return this.$store.getters.currentSupplyName
+		},
 	},
 
 	methods: {
@@ -105,7 +105,7 @@ export default {
 
 		selectCurrentUnit(event) {
 			this.$store.commit(mutations.SELECT_CURRENT_SUPPLY, {
-				currentSupply: event.target.value,
+				currentSupplyName: event.target.value,
 			})
 		},
 
@@ -125,7 +125,6 @@ export default {
 		onRemoveButtonClick() {
 			this.$store.commit(mutations.REMOVE_CURRENT_SUPPLY)
 		},
-
 	},
 }
 </script>

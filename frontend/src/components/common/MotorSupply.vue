@@ -59,7 +59,6 @@
 
 <script>
 import { mutations } from '../../store/constants'
-import { mapState } from 'vuex'
 import PhaseSelector from './PhaseSelector.vue'
 
 export default {
@@ -68,10 +67,11 @@ export default {
 		PhaseSelector,
 	},
 
-	computed: mapState({
-		currentSupply: (state) => state.currentSupply,
-		ventUnit: (state) => state.ventUnits[state.currentSupply],
-	}),
+	computed: {
+		ventUnit() {
+			return this.$store.getters.ventSupplyUnit
+		}
+	},
 
 	methods: {
 		setInput(event) {
