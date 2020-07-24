@@ -16,17 +16,6 @@
 				</b-form-select>
 			</div>
 			<div class="controls">
-				<!-- <div class="configItem">
-					<b-form-input
-						id="unitName"
-						name="unitName"
-						size="sm"
-						:value="ventUnitName"
-						@input.native="onVentUnitNameChangeLocaly"
-						class="custom-input"
-					></b-form-input>
-					<label class="inputLabel" for="unitName">название системы</label>
-				</div> -->
 				<b-button
 					size="sm"
 					variant="outline-dark"
@@ -34,7 +23,6 @@
 					v-b-modal.modal-create-unit
 					>добавить</b-button
 				>
-				<!-- <b-button size="sm" variant="outline-dark" class="button">изменить</b-button> -->
 				<b-button
 					size="sm"
 					variant="outline-danger"

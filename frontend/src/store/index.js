@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { mutations, defaultSupplyUnit } from './constants'
+import { mutations, defaultSupplyUnit, defaultExhaustUnit } from './constants'
 
 Vue.use(Vuex)
 /* eslint-disable no-unused-vars */
@@ -13,6 +13,9 @@ export default new Vuex.Store({
 			R1: {
 				...defaultSupplyUnit,
 			},
+			R11: {
+				...defaultExhaustUnit,
+			}
 		},
 		supplyCount: 1,
 		exhaustCount: 1,
@@ -23,6 +26,16 @@ export default new Vuex.Store({
 				...state.ventUnits,
 				[state.currentSupplyName]: {
 					...state.ventUnits[state.currentSupplyName],
+					[payload.unit]: payload.data,
+				}
+			}
+		},
+
+		[mutations.SET_EXHAUST_FIELD](state, payload) {
+			state.ventUnits = {
+				...state.ventUnits,
+				[state.currentExhaustName]: {
+					...state.ventUnits[state.currentExhaustName],
 					[payload.unit]: payload.data,
 				}
 			}

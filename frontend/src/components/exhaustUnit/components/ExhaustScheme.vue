@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div :class="`schemeContainer ${difRelayCheckbox ? 'schemeBgImg1' : 'schemeBgImg2'}`">
+    <div :class="`schemeContainer ${difRelayCheckbox ? 'schemeBgImg2' : 'schemeBgImg1'}`">
     </div>
 </div>
 </template>
@@ -25,10 +25,10 @@ export default {
 }
 
 .schemeBgImg1 {
-	background-image: url('../../../assets/vent/vyt.bmp');
+	background-image: url('../../../assets/vent/vyt.jpg');
 }
 
 .schemeBgImg2 {
-	background-image: url('../../../assets/vent/vyt_dP.bmp');
+	background-image: url('../../../assets/vent/vyt_dP.jpg');
 }
 </style>
