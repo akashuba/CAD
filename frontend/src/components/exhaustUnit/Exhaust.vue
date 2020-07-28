@@ -21,5 +21,7 @@ export default {
 .exhaustUnitContainer {
 	display: flex;
 	padding: 10px;
+	border: 1px solid gray;
+	border-radius: 5px;
 }
 </style>

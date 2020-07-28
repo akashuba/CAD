@@ -42,4 +42,8 @@ label {
 	display: flex;
 }
 
+.custom-control-label {
+	line-height: 1.2;
+}
+
 </style>

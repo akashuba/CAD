@@ -106,10 +106,6 @@ export default {
 			this.$refs['modal-create-unit'].hide()
 		},
 
-		onVentUnitNameChangeLocaly(event) {
-			this.ventUnitName = event.target.value
-		},
-
 		onRemoveButtonClick() {
 			this.$store.commit(mutations.REMOVE_CURRENT_SUPPLY)
 		},

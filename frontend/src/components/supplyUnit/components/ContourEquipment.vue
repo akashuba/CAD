@@ -45,6 +45,8 @@
 
 				<div v-if="fieldsIds.reservePump" class="reservePump">
 					<b-form-checkbox
+						class="reservePumpCheckbox"
+						size="sm"
 						:id="fieldsIds.reservePump"
 						:name="fieldsIds.reservePump"
 						:checked="ventUnit[fieldsIds.reservePump]"
@@ -141,5 +143,9 @@ export default {
 	line-height: 24px;
 	text-align: left;
 	margin-top: 10px;
+}
+
+.reservePumpCheckbox label {
+	font-size: 12px;
 }
 </style>

@@ -45,6 +45,9 @@ export default {
 <style scoped>
 .supplyContainer {
 	padding: 10px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	margin-right: 10px;
 }
 
 .sypplyUpperBlock,

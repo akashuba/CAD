@@ -5,7 +5,7 @@
 			size="sm"
 			class="exhaustCheckbox"
 			:checked="ventUnit['C18']"
-			@change.native="setCheckboxExhaust"
+			@change.native="setCheckbox"
 		>
 			датчик влажности
 		</b-form-checkbox>
@@ -14,7 +14,7 @@
 			size="sm"
 			class="exhaustCheckbox"
 			:checked="ventUnit['C17']"
-			@change.native="setCheckboxExhaust"
+			@change.native="setCheckbox"
 		>
 			датчик температуры
 		</b-form-checkbox>
@@ -23,7 +23,7 @@
 			size="sm"
 			class="exhaustCheckbox"
 			:checked="ventUnit['C9']"
-			@change.native="setCheckboxExhaust"
+			@change.native="setCheckbox"
 		>
 			воздушная заслонка
 		</b-form-checkbox>
@@ -33,7 +33,7 @@
 			size="sm"
 			class="exhaustCheckbox"
 			:checked="ventUnit['C8']"
-			@change.native="setCheckboxExhaust"
+			@change.native="setCheckbox"
 		>
 			диф. реле вентилятора
 		</b-form-checkbox>
@@ -42,7 +42,7 @@
 			size="sm"
 			class="exhaustCheckbox"
 			:checked="ventUnit['C5']"
-			@change.native="setCheckboxExhaust"
+			@change.native="setCheckbox"
 		>
 			частотный преобразователь
 		</b-form-checkbox>
@@ -51,7 +51,7 @@
 			size="sm"
 			class="exhaustCheckbox"
 			:checked="ventUnit['C6']"
-			@change.native="setCheckboxExhaust"
+			@change.native="setCheckbox"
 		>
 			резервный двигатель
 		</b-form-checkbox>
@@ -60,7 +60,7 @@
 			size="sm"
 			class="exhaustCheckbox"
 			:checked="ventUnit['C7']"
-			@change.native="setCheckboxExhaust"
+			@change.native="setCheckbox"
 		>
 			выключатель безопасности
 		</b-form-checkbox>
@@ -79,7 +79,7 @@ export default {
 	},
 
 	methods: {
-		setCheckboxExhaust(event) {
+		setCheckbox(event) {
 			this.$store.commit(mutations.SET_EXHAUST_FIELD, {
 				unit: event.target.name,
 				data: event.target.checked,
