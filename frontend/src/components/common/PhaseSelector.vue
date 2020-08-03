@@ -27,7 +27,7 @@ export default {
 
 	methods: {
 		setSelect(event) {
-			this.$store.commit(mutations.SET_FIELD, {
+			this.$store.commit(mutations.SET_SUPPLY_FIELD, {
 				unit: event.target.name,
 				data: `${event.target.value}`,
 			})

@@ -16,10 +16,6 @@
 			</div>
 		</div>
 		<div class="optionsSelector">
-			<div :class="{highlight: !selectedOption, newOne: true }" @click="onEmptyConfigClick">
-				<img width="128" height="128" src="../../assets/new-file.png" />
-				<p>Новые конфигурации</p>
-			</div>
 			<div class="byTemplate">
 				<div class="unitsList">
 					<b-form-select
@@ -58,13 +54,7 @@ export default {
 		createVentUnit: Function,
 	},
 
-	// updated() {
-	// 	console.log('selectedOption ', this.selectedOption)
-	// 	console.log('selectedTemplate ', this.selectedTemplate)
-	// },
-
 	data() {
-
 		return {
 			selectedOption: null,
 			ventUnitName: '',
@@ -75,12 +65,6 @@ export default {
 	methods: {
 		onVentUnitNameChangeLocaly(event) {
 			this.ventUnitName = event.target.value
-		},
-
-		onEmptyConfigClick() {
-			this.selectedOption = null
-			this.selectedTemplate = ''
-			
 		},
 
 		onSelectConfig() {
@@ -100,45 +84,34 @@ export default {
 
 	computed: {
 		isButtonDisabled() {
-			return	this.ventUnitName.length < 1 
+			return this.ventUnitName.length < 1
 		},
 
 		extendedOptions() {
-			return [{value: '', text: 'новые конфигурации'}, ...this.options]
+			return [{ value: '', text: 'новая конфигурация' }, ...this.options]
 		},
-	}
+	},
 }
 </script>
 <style scoped>
 .optionsSelector {
-	display: flex;
 	width: 100%;
 }
 
-.newOne,
 .byTemplate {
 	width: 50%;
+	align-self: center;
 	text-align: center;
-	padding: 5px;
+	/* padding: 5px; */
 	border: 1px solid transparent;
 	border-radius: 3px;
-}
-
-.highlight {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-}
-
-.newOne {
-	cursor: pointer;
 }
 
 .configItem {
 	display: flex;
 	align-items: center;
 	text-align: left;
-	justify-content: center;
+	/* justify-content: center; */
 }
 
 .customInput {
@@ -157,7 +130,6 @@ export default {
 
 .unitsList {
 	width: 200px;
-	margin: auto;
 }
 
 .footer {

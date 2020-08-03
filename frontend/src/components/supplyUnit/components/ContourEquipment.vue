@@ -87,19 +87,19 @@ export default {
 	},
 	methods: {
 		setCheckbox(event) {
-			this.$store.commit(mutations.SET_FIELD, {
+			this.$store.commit(mutations.SET_SUPPLY_FIELD, {
 				unit: event.target.name,
 				data: event.target.checked,
 			})
 		},
 		setInput(event) {
-			this.$store.commit(mutations.SET_FIELD, {
+			this.$store.commit(mutations.SET_SUPPLY_FIELD, {
 				unit: event.target.name,
 				data: `${event.target.value}`,
 			})
 		},
 		setSelect(event) {
-			this.$store.commit(mutations.SET_FIELD, {
+			this.$store.commit(mutations.SET_SUPPLY_FIELD, {
 				unit: event.target.name,
 				data: `${event.target.value}`,
 			})

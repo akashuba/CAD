@@ -5,7 +5,6 @@
 				<div class="configItem">
 					<label class="inputLabel" for="C2">ток (А)</label>
 					<b-form-input
-						id="C2"
 						name="C2"
 						size="sm"
 						:value="ventUnit['C2']"
@@ -16,7 +15,6 @@
 				<div class="configItem">
 					<label class="inputLabel" for="C3">мощн. (кВт)</label>
 					<b-form-input
-						id="C3"
 						name="C3"
 						size="sm"
 						:value="ventUnit['C3']"
@@ -33,7 +31,6 @@
 				<div class="configItem">
 					<label class="inputLabel" for="C59">длинна кабеля</label>
 					<b-form-input
-						id="C59"
 						name="C59"
 						size="sm"
 						:value="ventUnit['C59']"
@@ -44,7 +41,6 @@
 				<div class="configItem">
 					<label class="inputLabel" for="C60">площ заслонки</label>
 					<b-form-input
-						id="C60"
 						name="C60"
 						size="sm"
 						:value="ventUnit['C60']"
@@ -58,7 +54,6 @@
 </template>
 
 <script>
-import { mutations } from '../../store/constants'
 import PhaseSelector from './PhaseSelector.vue'
 
 export default {
@@ -67,24 +62,14 @@ export default {
 		PhaseSelector,
 	},
 
-	computed: {
-		ventUnit() {
-			return this.$store.getters.ventSupplyUnit
-		}
+	props: {
+		ventUnit: Object,
+		setField: Function,
 	},
 
 	methods: {
 		setInput(event) {
-			this.$store.commit(mutations.SET_FIELD, {
-				unit: event.target.name,
-				data: `${event.target.value}`,
-			})
-		},
-		setSelect(event) {
-			this.$store.commit(mutations.SET_FIELD, {
-				unit: event.target.name,
-				data: `${event.target.value}`,
-			})
+			this.setField && this.setField(event)
 		},
 	},
 }
@@ -97,8 +82,6 @@ export default {
 }
 
 .configItem {
-	/* display: flex;
-	align-items: center; */
 	text-align: left;
 	margin-bottom: 5px;
 }
@@ -119,7 +102,6 @@ export default {
 }
 
 .inputLabel {
-	/* white-space: nowrap; */
 	padding-left: 10px;
 	margin-bottom: 0;
 }
