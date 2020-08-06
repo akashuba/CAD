@@ -5,6 +5,7 @@
 			<Supply />
 			<Exhaust />
 		</div>
+		<GeneralConfig />
 	</div>
 </template>
 
@@ -12,6 +13,7 @@
 import Supply from './components/supplyUnit/Supply.vue'
 import Header from './components/common/Header.vue'
 import Exhaust from './components/exhaustUnit/Exhaust.vue'
+import GeneralConfig from './components/generalConfig/GeneralConfig.vue'
 
 export default {
 	name: 'App',
@@ -19,6 +21,7 @@ export default {
 		Supply,
 		Header,
 		Exhaust,
+		GeneralConfig,
 	},
 }
 </script>
@@ -32,6 +35,8 @@ export default {
 	color: #2c3e50;
 	background-color: #bfcddb;
 	min-width: 1450px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 
 label {
@@ -40,6 +45,7 @@ label {
 
 .ventUnits {
 	display: flex;
+	justify-content: space-between;
 }
 
 .custom-control-label {

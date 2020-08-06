@@ -63,10 +63,10 @@ export default {
 
 		ventUnit() {
 			return this.$store.getters.ventExhaustUnit
-		}
+		},
 	},
 
-		methods: {
+	methods: {
 		selectCurrentUnit(event) {
 			this.$store.commit(mutations.SELECT_CURRENT_EXHAUST, {
 				currentName: event.target.value,
