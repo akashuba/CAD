@@ -34,7 +34,7 @@ export default {
 	text-align: center;
 	color: #2c3e50;
 	background-color: #bfcddb;
-	min-width: 1450px;
+	min-width: 1470px;
 	padding-right: 10px;
 	padding-left: 10px;
 }
