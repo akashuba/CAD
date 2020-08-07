@@ -1,2 +1,2 @@
   
-web: node ./backend/index.js -p 3004
+web: node ./backend/index.js
