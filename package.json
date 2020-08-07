@@ -1,0 +1,23 @@
+{
+  "name": "cad",
+  "version": "1.0.0",
+  "description": "``` Quik start guide in frontend folder ```",
+  "main": "backend/index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akashuba/CAD.git"
+  },
+  "author": "Alex Kashuba",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akashuba/CAD/issues"
+  },
+  "homepage": "https://github.com/akashuba/CAD#readme"
+}
