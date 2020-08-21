@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div :class="`schemeContainer ${fcCheckbox ? 'schemeBgImg1' : 'schemeBgImg2'}`">
+		<div class="schemeContainer schemeBgImg2">
 			<div
 				class="contoureImg contourOne"
 				:style="{ backgroundImage: `url(${images.contourOne[contourOneSelect]})` }"
@@ -20,6 +20,10 @@
 			<div
 				class="contoureImg contourFive"
 				:style="{ backgroundImage: `url(${images.contourFive[contourFiveSelect]})` }"
+			></div>
+			<div
+				class="frequencyСonverter"
+				:style="{ backgroundImage: `url(${images[frequencyСonverterSelect]})` }"
 			></div>
 		</div>
 	</div>
@@ -67,6 +71,7 @@ export default {
 					['2']: require('../../../assets/vent/uvl2.jpg'),
 					['3']: require('../../../assets/vent/uvl.jpg'),
 				},
+				frequencyСonverter: require('../../../assets/vent/v_chp.png'),
 			},
 		}
 	},
@@ -98,6 +103,10 @@ export default {
 		contourFiveSelect() {
 			return this.$store.getters.ventSupplyUnit['C51']
 		},
+
+		frequencyСonverterSelect() {
+			return this.fcCheckbox ? 'frequencyСonverter' : ''
+		}
 	},
 }
 </script>
@@ -144,5 +153,13 @@ export default {
 
 .contourFive {
 	left: 730px;
+}
+
+.frequencyСonverter {
+	position: absolute;
+	height: 69px;
+	width: 58px;
+	top: 105px;
+    left: 838px
 }
 </style>
