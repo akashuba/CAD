@@ -27,6 +27,7 @@
 			title="Добавить установку"
 			ok-title="добавить"
 			cancel-title="закрыть"
+			size="sm"
 			hide-footer
 		>
 			<ModalCreateUnit :createVentUnit="createVentUnit" :options="options" />
@@ -126,7 +127,7 @@ export default {
 
 .sypplyUpperBlock {
 	display: flex;
-	min-height: 270px;
+	min-height: 260px;
 }
 
 .lowerBlock {

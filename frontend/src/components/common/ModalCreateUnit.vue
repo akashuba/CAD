@@ -2,7 +2,11 @@
 	<div class="modalCreateUnitContainer">
 		<div class="unitName">
 			<div class="configItem">
-				<b-form-input
+				<label class="inputLabel" for="unitName">
+					<label class="nameLabel">
+						Название установки
+					</label>
+					<b-form-input
 					id="unitName"
 					name="unitName"
 					size="sm"
@@ -12,11 +16,12 @@
 					placeholder="Введите название установки"
 					autofocus
 				></b-form-input>
-				<label class="inputLabel" for="unitName">Название установки</label>
+				</label>
 			</div>
 		</div>
 		<div class="optionsSelector">
 			<div class="byTemplate">
+				<label class="tamplateLabel">Выберите шаблон</label>
 				<div class="unitsList">
 					<b-form-select
 						class="mb-3 custom-select"
@@ -30,7 +35,6 @@
 					>
 					</b-form-select>
 				</div>
-				<p>Выбрать шаблон для конфигураций</p>
 			</div>
 		</div>
 
@@ -94,15 +98,18 @@ export default {
 }
 </script>
 <style scoped>
+.modalCreateUnitContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .optionsSelector {
 	width: 100%;
 }
 
 .byTemplate {
-	width: 50%;
 	align-self: center;
-	text-align: center;
-	/* padding: 5px; */
 	border: 1px solid transparent;
 	border-radius: 3px;
 }
@@ -111,28 +118,25 @@ export default {
 	display: flex;
 	align-items: center;
 	text-align: left;
-	/* justify-content: center; */
-}
-
-.customInput {
-	width: 50%;
 }
 
 .inputLabel {
-	margin-left: 10px;
+	width: 100%;
 	margin-bottom: 0;
 }
 
 .unitName {
+	width: 100%;
 	text-align: center;
-	margin-bottom: 30px;
-}
-
-.unitsList {
-	width: 200px;
+	margin-bottom: 20px;
 }
 
 .footer {
 	text-align: center;
+}
+
+.tamplateLabel,
+.nameLabel {
+	font-size: 14px;
 }
 </style>

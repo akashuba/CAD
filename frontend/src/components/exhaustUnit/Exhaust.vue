@@ -22,6 +22,7 @@
 			title="Добавить установку"
 			ok-title="добавить"
 			cancel-title="закрыть"
+			size="sm"
 			hide-footer
 		>
 			<ModalCreateUnit :createVentUnit="createVentUnit" :options="options" />
