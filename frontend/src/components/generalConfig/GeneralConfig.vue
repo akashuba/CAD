@@ -23,14 +23,27 @@
 			ok-title="сохранить"
 			cancel-title="закрыть"
 			hide-footer
+			size="lg"
 		>
-			<div>modal</div>
+			<b-tabs content-class="mt-3">
+				<b-tab title="Общие настройки" active>
+					<GeneralSettings />
+				</b-tab>
+				<b-tab title="Теги обозначений"><p>I'm the second tab</p></b-tab>
+				<b-tab title="Комплектующие"><p>I'm the second tab</p></b-tab>
+			</b-tabs>
 		</b-modal>
 	</div>
 </template>
 <script>
+import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue'
+
 export default {
 	name: 'GeneralConfig',
+
+	components: {
+		GeneralSettings,
+	},
 
 	methods: {
 		showModal() {
@@ -43,12 +56,12 @@ export default {
 .generalConfigWrapper {
 	display: flex;
 	width: 100%;
-    padding-top: 5px;
-    justify-content: flex-end;
+	padding-top: 5px;
+	justify-content: flex-end;
 }
 
 .generalConfig {
-    margin-right: 20px;
+	margin-right: 20px;
 }
 
 .exportImport {
@@ -58,6 +71,6 @@ export default {
 
 .button {
 	margin-bottom: 5px;
-    min-width: 215px;
+	min-width: 215px;
 }
 </style>
