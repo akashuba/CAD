@@ -30,8 +30,16 @@
 					<GeneralSettings />
 				</b-tab>
 				<b-tab title="Теги обозначений"><p>I'm the second tab</p></b-tab>
-				<b-tab title="Комплектующие"><p>I'm the second tab</p></b-tab>
+				<b-tab title="Комплектующие"><p>I'm the third tab</p></b-tab>
 			</b-tabs>
+			<div class="footer">
+				<b-button
+					class="mt-3"
+					variant="primary"
+					@click="onOkClick"
+					>Закрыть</b-button
+				>
+			</div>
 		</b-modal>
 	</div>
 </template>
@@ -48,6 +56,10 @@ export default {
 	methods: {
 		showModal() {
 			this.$refs['modalGeneralConfig'].show()
+		},
+
+		onOkClick() {
+			this.$refs['modalGeneralConfig'].hide()
 		},
 	},
 }
@@ -72,5 +84,11 @@ export default {
 .button {
 	margin-bottom: 5px;
 	min-width: 215px;
+}
+
+.footer {
+	display: flex;
+	justify-content: center;
+	border-top: 1px solid rgb(206, 206, 206);
 }
 </style>

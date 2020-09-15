@@ -5,7 +5,7 @@
 				class="checkbox"
 				id="C2"
 				name="C2"
-				:checked="ventUnit['C2']"
+				:checked="settings['C2']"
 				@change.native="setCheckbox"
 			>
 				Два ввода
@@ -14,29 +14,26 @@
 				class="checkbox"
 				id="C3"
 				name="C3"
-				:checked="ventUnit['C3']"
+				:checked="settings['C3']"
 				@change.native="setCheckbox"
 			>
 				ИБП
 			</b-form-checkbox>
-			<b-form-checkbox
-				class="checkbox"
-				id="reserve_1"
-				name="reserve_1"
-			>
+			<b-form-checkbox class="checkbox" id="reserve_1" name="reserve_1">
 				Обратный сигнал заслонок
 			</b-form-checkbox>
-			<b-form-checkbox
-				class="checkbox"
-				id="reserve_2"
-				name="reserve_2"
-			>
+			<b-form-checkbox class="checkbox" id="reserve_2" name="reserve_2">
 				Обратный сигнал клапанов
 			</b-form-checkbox>
 		</div>
 
 		<b-form-group label="Питание клапанов">
-			<b-form-radio-group id="radio-group-2" v-model="selected" name="radio-sub-component">
+			<b-form-radio-group
+				@change.native="setRadio"
+				id="valve_voltage"
+				name="C9"
+				:checked="settings['C9']"
+			>
 				<b-form-radio value="24">~24V</b-form-radio>
 				<b-form-radio value="220">~220V</b-form-radio>
 			</b-form-radio-group>
@@ -44,6 +41,8 @@
 	</div>
 </template>
 <script>
+import { mutations } from '../../../../store/constants'
+
 export default {
 	name: 'GeneralSettings',
 
@@ -54,18 +53,24 @@ export default {
 	},
 
 	computed: {
-		ventUnit() {
-			return this.$store.getters.ventSupplyUnit
+		settings() {
+			return this.$store.getters.generalSettings
 		},
 	},
 
 	methods: {
 		setCheckbox(event) {
-			console.log(event)
-			// this.$store.commit(mutations.SET_SUPPLY_FIELD, {
-			// 	unit: event.target.name,
-			// 	data: event.target.checked,
-			// })
+			this.$store.commit(mutations.SET_GENERAL_CONFIG, {
+				unit: event.target.name,
+				data: event.target.checked,
+			})
+		},
+
+		setRadio(event) {
+			this.$store.commit(mutations.SET_GENERAL_CONFIG, {
+				unit: event.target.name,
+				data: event.target.value,
+			})
 		},
 	},
 }

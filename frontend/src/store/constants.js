@@ -7,6 +7,7 @@ export const mutations = {
 	SELECT_CURRENT_EXHAUST: 'SELECT_CURRENT_EXHAUST',
 	REMOVE_CURRENT_SUPPLY: 'REMOVE_CURRENT_SUPPLY',
 	REMOVE_CURRENT_EXHAUST: 'REMOVE_CURRENT_EXHAUST',
+	SET_GENERAL_CONFIG: 'SET_GENERAL_CONFIG',
 }
 
 export const defaultSupplyUnit = {
@@ -36,4 +37,11 @@ export const defaultExhaustUnit = {
 	C7: false,
 	C8: false,
 	C9: false,
+}
+
+export const defaultGeneralSettings = {
+	C1: 'ЩАУ-1',
+	C2: false,
+	C3: false,
+	C9: "220",
 }

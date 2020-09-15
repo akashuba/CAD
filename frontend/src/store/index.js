@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { mutations, defaultSupplyUnit, defaultExhaustUnit } from './constants'
+import { mutations, defaultSupplyUnit, defaultExhaustUnit, defaultGeneralSettings } from './constants'
 
 Vue.use(Vuex)
 /* eslint-disable no-unused-vars */
@@ -9,6 +9,7 @@ export default new Vuex.Store({
 	state: {
 		currentSupplyName: 'R1',
 		currentExhaustName: 'R11',
+		currentGeneralSettingsName: 'R24',
 		ventUnitsSupply: {
 			R1: {
 				...defaultSupplyUnit,
@@ -17,6 +18,11 @@ export default new Vuex.Store({
 		ventUnitsExhaust: {
 			R11: {
 				...defaultExhaustUnit,
+			}
+		},
+		generalSettings: {
+			R24: {
+				...defaultGeneralSettings,
 			}
 		},
 		supplyCount: 1,
@@ -38,6 +44,16 @@ export default new Vuex.Store({
 				...state.ventUnitsExhaust,
 				[state.currentExhaustName]: {
 					...state.ventUnitsExhaust[state.currentExhaustName],
+					[payload.unit]: payload.data,
+				}
+			}
+		},
+
+		[mutations.SET_GENERAL_CONFIG](state, payload) {
+			state.generalSettings = {
+				...state.generalSettings,
+				[state.currentGeneralSettingsName]: {
+					...state.generalSettings[state.currentGeneralSettingsName],
 					[payload.unit]: payload.data,
 				}
 			}
@@ -128,6 +144,7 @@ export default new Vuex.Store({
 		},
 		ventUnitsSupply: (state) => state.ventUnitsSupply,
 		ventUnitsExhaust: (state) => state.ventUnitsExhaust,
+		generalSettings: (state) => state.generalSettings[state.currentGeneralSettingsName],
 		ventSupplyUnit: (state) => state.ventUnitsSupply[state.currentSupplyName],
 		ventExhaustUnit: (state) => state.ventUnitsExhaust[state.currentExhaustName],
 		ventSupplyUnitNames: (state) => {
