@@ -9,7 +9,7 @@
 			<b-button size="sm" variant="outline-dark" class="button"
 				>Импортировать конфигурации</b-button
 			>
-			<b-button size="sm" variant="outline-dark" class="button"
+			<b-button size="sm" variant="outline-dark" class="button" @click="saveConfigs"
 				>Сохранить конфигурации</b-button
 			>
 			<b-button size="sm" variant="outline-dark" class="button"
@@ -45,6 +45,7 @@
 </template>
 <script>
 import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue'
+import { parseTextAsXml } from '../../../lib/lib'
 
 export default {
 	name: 'GeneralConfig',
@@ -61,6 +62,10 @@ export default {
 		onOkClick() {
 			this.$refs['modalGeneralConfig'].hide()
 		},
+
+		saveConfigs() {
+			console.log(parseTextAsXml(window.XMLTemplate));
+		}
 	},
 }
 </script>
