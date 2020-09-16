@@ -45,7 +45,7 @@
 </template>
 <script>
 import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue'
-import { parseTextAsXml } from '../../../lib/lib'
+import { parseTextAsXml, getXmlElement } from '../../../lib/lib'
 
 export default {
 	name: 'GeneralConfig',
@@ -64,7 +64,11 @@ export default {
 		},
 
 		saveConfigs() {
-			console.log(parseTextAsXml(window.XMLTemplate));
+			const xmlDom = parseTextAsXml(window.XMLTemplate);
+			const xmlElement = getXmlElement(xmlDom, 'R1C4')
+
+			console.log(xmlElement);
+			console.log(JSON.parse(JSON.stringify(this.$store.getters.state)));
 		}
 	},
 }

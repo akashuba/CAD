@@ -3,3 +3,7 @@ export const parseTextAsXml = (xmlRawText) => {
 
 	return parser.parseFromString(xmlRawText, 'text/xml')
 }
+
+export const getXmlElement = (xmlDom, tagName) => {
+	return xmlDom.getElementsByTagName(tagName)[0];
+}
