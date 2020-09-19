@@ -45,7 +45,7 @@
 </template>
 <script>
 import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue'
-import { parseTextAsXml, getXmlElement } from '../../../lib/lib'
+import { parseTextAsXml, getXmlElement, flattenStoreBranch } from '../../../lib/lib'
 
 export default {
 	name: 'GeneralConfig',
@@ -65,10 +65,12 @@ export default {
 
 		saveConfigs() {
 			const xmlDom = parseTextAsXml(window.XMLTemplate);
-			const xmlElement = getXmlElement(xmlDom, 'R1C4')
+			const xmlElement = getXmlElement(xmlDom, 'R1C4');
+			const storeObj = JSON.parse(JSON.stringify(this.$store.getters.state))
 
 			console.log(xmlElement);
-			console.log(JSON.parse(JSON.stringify(this.$store.getters.state)));
+			console.log(storeObj);
+			console.log(flattenStoreBranch(storeObj.ventUnitsSupply));
 		}
 	},
 }
