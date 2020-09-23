@@ -45,15 +45,7 @@
 </template>
 <script>
 import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue'
-import {
-	parseTextAsXml,
-	getXmlElement,
-	replaceCheckboxesValue,
-	updateXmlDom,
-	serializeXMLDom,
-	uploadXml,
-	flattenStore,
-} from '../../../lib/lib'
+import { downloadXml } from '../../../lib/lib'
 
 export default {
 	name: 'GeneralConfig',
@@ -72,15 +64,7 @@ export default {
 		},
 
 		saveConfigs() {
-			const xmlDom = parseTextAsXml(window.XMLTemplate);
-			const xmlElement = getXmlElement(xmlDom, 'R1C4');
-			const storeObj = JSON.parse(JSON.stringify(this.$store.getters.state));
-			const flattenetStore = flattenStore(storeObj)
-			const updatedXmlDom = updateXmlDom(xmlDom, replaceCheckboxesValue(flattenetStore));
-			const serializedDom = serializeXMLDom(updatedXmlDom);
-
-			console.log(flattenStore(storeObj));
-			uploadXml(serializedDom)
+			downloadXml(this.$store.getters.state)
 		}
 	},
 }

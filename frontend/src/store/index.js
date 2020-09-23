@@ -28,6 +28,7 @@ export default new Vuex.Store({
 		supplyCount: 1,
 		exhaustCount: 1,
 	},
+
 	mutations: {
 		[mutations.SET_SUPPLY_FIELD](state, payload) {
 			state.ventUnitsSupply = {

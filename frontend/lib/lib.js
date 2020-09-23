@@ -1,4 +1,4 @@
-import { storeBranches } from "./constants";
+import { storeBranches } from './constants'
 
 export const parseTextAsXml = (xmlRawText) => {
 	const parser = new DOMParser()
@@ -30,7 +30,7 @@ export const flattenStoreBranch = (storeBranch) => {
 }
 
 export const flattenStore = (store) => {
-	let result = [];
+	let result = []
 
 	storeBranches.forEach((storeBranchName) => {
 		const flattenBranch = flattenStoreBranch(store[storeBranchName])
@@ -40,7 +40,7 @@ export const flattenStore = (store) => {
 		}
 	})
 
-	return result;
+	return result
 }
 
 export const replaceCheckboxesValue = (normalizeData) => {
@@ -71,17 +71,25 @@ export const serializeXMLDom = (xmlDom) => {
 	return XMLS.serializeToString(xmlDom)
 }
 
-export const uploadXml = (serializedDom) => {
-	const downloadLink =  document.createElement('a');
-	let xmlConfigCounter = 1;
+export const downloadXml = (storeObj) => {
+	const xmlDom = parseTextAsXml(window.XMLTemplate)
+	const flattenetStore = flattenStore(storeObj)
+	const updatedXmlDom = updateXmlDom(xmlDom, replaceCheckboxesValue(flattenetStore))
+	const serializedDom = serializeXMLDom(updatedXmlDom)
+
+	const downloadLink = document.createElement('a')
+	let xmlConfigCounter = 1
 	const bb = new Blob([serializedDom], {
 		type: 'text/plain',
-	});
+	})
 
-	downloadLink.setAttribute('href', window.URL.createObjectURL(bb));
-	downloadLink.setAttribute('download', `ventConfigXml${xmlConfigCounter}.xml`);
-	downloadLink.dataset.downloadurl = ['text/plain', downloadLink.download, downloadLink.href]
-		.join(':');
-	downloadLink.click();
-	xmlConfigCounter++;
+	downloadLink.setAttribute('href', window.URL.createObjectURL(bb))
+	downloadLink.setAttribute('download', `ventConfigXml${xmlConfigCounter}.xml`)
+	downloadLink.dataset.downloadurl = [
+		'text/plain',
+		downloadLink.download,
+		downloadLink.href,
+	].join(':')
+	downloadLink.click()
+	xmlConfigCounter++
 }
