@@ -48,11 +48,11 @@ import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue'
 import {
 	parseTextAsXml,
 	getXmlElement,
-	flattenStoreBranch,
 	replaceCheckboxesValue,
 	updateXmlDom,
 	serializeXMLDom,
 	uploadXml,
+	flattenStore,
 } from '../../../lib/lib'
 
 export default {
@@ -75,14 +75,11 @@ export default {
 			const xmlDom = parseTextAsXml(window.XMLTemplate);
 			const xmlElement = getXmlElement(xmlDom, 'R1C4');
 			const storeObj = JSON.parse(JSON.stringify(this.$store.getters.state));
-			const flattenVentUnitsBranch = flattenStoreBranch(storeObj.ventUnitsSupply);
-			const updatedXmlDom = updateXmlDom(xmlDom, replaceCheckboxesValue(flattenVentUnitsBranch));
+			const flattenetStore = flattenStore(storeObj)
+			const updatedXmlDom = updateXmlDom(xmlDom, replaceCheckboxesValue(flattenetStore));
 			const serializedDom = serializeXMLDom(updatedXmlDom);
 
-			console.log(xmlDom);
-			console.log(replaceCheckboxesValue(flattenVentUnitsBranch));
-			console.log(updateXmlDom(xmlDom, replaceCheckboxesValue(flattenVentUnitsBranch)));
-
+			console.log(flattenStore(storeObj));
 			uploadXml(serializedDom)
 		}
 	},

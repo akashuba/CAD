@@ -1,3 +1,5 @@
+import { storeBranches } from "./constants";
+
 export const parseTextAsXml = (xmlRawText) => {
 	const parser = new DOMParser()
 
@@ -25,6 +27,20 @@ export const flattenStoreBranch = (storeBranch) => {
 	})
 
 	return result
+}
+
+export const flattenStore = (store) => {
+	let result = [];
+
+	storeBranches.forEach((storeBranchName) => {
+		const flattenBranch = flattenStoreBranch(store[storeBranchName])
+
+		if (flattenBranch) {
+			result.push(...flattenBranch)
+		}
+	})
+
+	return result;
 }
 
 export const replaceCheckboxesValue = (normalizeData) => {

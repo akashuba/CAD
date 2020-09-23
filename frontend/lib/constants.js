@@ -1,0 +1,1 @@
+export const storeBranches = ['ventUnitsSupply', 'ventUnitsExhaust', 'generalSettings'];
