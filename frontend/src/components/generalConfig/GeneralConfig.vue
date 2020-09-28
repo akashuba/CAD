@@ -6,7 +6,8 @@
 			>
 		</div>
 		<div class="exportImport">
-			<b-button size="sm" variant="outline-dark" class="button"
+			<input accept=".xml" style="display: none" @change="onUploadXmlClick" type="file" name="uploadXml" id="uploadXml">
+			<b-button size="sm" variant="outline-dark" @click="importClick" class="button"
 				>Импортировать конфигурации</b-button
 			>
 			<b-button size="sm" variant="outline-dark" class="button" @click="saveConfigs"
@@ -33,19 +34,14 @@
 				<b-tab title="Комплектующие"><p>I'm the third tab</p></b-tab>
 			</b-tabs>
 			<div class="footer">
-				<b-button
-					class="mt-3"
-					variant="primary"
-					@click="onOkClick"
-					>Закрыть</b-button
-				>
+				<b-button class="mt-3" variant="primary" @click="onOkClick">Закрыть</b-button>
 			</div>
 		</b-modal>
 	</div>
 </template>
 <script>
-import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue'
-import { downloadXml } from '../../../lib/lib'
+import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue';
+import { downloadXml, uploadXml } from '../../../lib/lib';
 
 export default {
 	name: 'GeneralConfig',
@@ -56,18 +52,26 @@ export default {
 
 	methods: {
 		showModal() {
-			this.$refs['modalGeneralConfig'].show()
+			this.$refs['modalGeneralConfig'].show();
 		},
 
 		onOkClick() {
-			this.$refs['modalGeneralConfig'].hide()
+			this.$refs['modalGeneralConfig'].hide();
 		},
 
 		saveConfigs() {
-			downloadXml(this.$store.getters.state)
+			downloadXml(this.$store.getters.state);
+		},
+
+		importClick() {
+			document.getElementById('uploadXml').click()
+		},
+
+		onUploadXmlClick(data) {
+			uploadXml(data)
 		}
 	},
-}
+};
 </script>
 <style scoped>
 .generalConfigWrapper {

@@ -1,95 +1,112 @@
-import { storeBranches } from './constants'
+import { storeBranches } from './constants';
 
 export const parseTextAsXml = (xmlRawText) => {
-	const parser = new DOMParser()
+	const parser = new DOMParser();
 
-	return parser.parseFromString(xmlRawText, 'text/xml')
-}
+	return parser.parseFromString(xmlRawText, 'text/xml');
+};
 
 export const getXmlElement = (xmlDom, tagName) => {
-	return xmlDom.getElementsByTagName(tagName)[0]
-}
+	return xmlDom.getElementsByTagName(tagName)[0];
+};
 
 export const flattenStoreBranch = (storeBranch) => {
-	let result = []
-	const arrayFromBranch = Object.entries(storeBranch)
+	let result = [];
+	const arrayFromBranch = Object.entries(storeBranch);
 	const objForNormalize = arrayFromBranch.map((item) => {
 		return {
 			row: item[0],
 			columns: Object.entries(item[1]),
-		}
-	})
+		};
+	});
 
 	objForNormalize.map((ventUnit) => {
 		ventUnit.columns.map((columnConfig) => {
-			result.push([`${ventUnit.row}${columnConfig[0]}`, columnConfig[1]])
-		})
-	})
+			result.push([`${ventUnit.row}${columnConfig[0]}`, columnConfig[1]]);
+		});
+	});
 
-	return result
-}
+	return result;
+};
 
 export const flattenStore = (store) => {
-	let result = []
+	let result = [];
 
 	storeBranches.forEach((storeBranchName) => {
-		const flattenBranch = flattenStoreBranch(store[storeBranchName])
+		const flattenBranch = flattenStoreBranch(store[storeBranchName]);
 
 		if (flattenBranch) {
-			result.push(...flattenBranch)
+			result.push(...flattenBranch);
 		}
-	})
+	});
 
-	return result
-}
+	return result;
+};
 
 export const replaceCheckboxesValue = (normalizeData) => {
 	return normalizeData.map((configItem) => {
 		return [
 			configItem[0],
 			configItem[1] === true ? '1' : configItem[1] === false ? '' : configItem[1],
-		]
-	})
-}
+		];
+	});
+};
 
 export const updateXmlDom = (xmlDom, configs) => {
-	let resultXMLDom = xmlDom
+	let resultXMLDom = xmlDom;
 
 	configs.map((config) => {
-		const xmlElementForReplace = getXmlElement(resultXMLDom, config[0])
+		const xmlElementForReplace = getXmlElement(resultXMLDom, config[0]);
 
 		if (xmlElementForReplace) {
-			xmlElementForReplace.textContent = config[1]
+			xmlElementForReplace.textContent = config[1];
 		}
-	})
+	});
 
-	return resultXMLDom
-}
+	return resultXMLDom;
+};
 
 export const serializeXMLDom = (xmlDom) => {
-	const XMLS = new XMLSerializer()
-	return XMLS.serializeToString(xmlDom)
-}
+	const XMLS = new XMLSerializer();
+	return XMLS.serializeToString(xmlDom);
+};
 
 export const downloadXml = (storeObj) => {
-	const xmlDom = parseTextAsXml(window.XMLTemplate)
-	const flattenetStore = flattenStore(storeObj)
-	const updatedXmlDom = updateXmlDom(xmlDom, replaceCheckboxesValue(flattenetStore))
-	const serializedDom = serializeXMLDom(updatedXmlDom)
+	const xmlDom = parseTextAsXml(window.XMLTemplate);
+	const flattenetStore = flattenStore(storeObj);
+	const updatedXmlDom = updateXmlDom(xmlDom, replaceCheckboxesValue(flattenetStore));
+	const serializedDom = serializeXMLDom(updatedXmlDom);
 
-	const downloadLink = document.createElement('a')
-	let xmlConfigCounter = 1
+	const downloadLink = document.createElement('a');
+	let xmlConfigCounter = 1;
 	const bb = new Blob([serializedDom], {
 		type: 'text/plain',
-	})
+	});
 
-	downloadLink.setAttribute('href', window.URL.createObjectURL(bb))
-	downloadLink.setAttribute('download', `ventConfigXml${xmlConfigCounter}.xml`)
+	downloadLink.setAttribute('href', window.URL.createObjectURL(bb));
+	downloadLink.setAttribute('download', `ventConfigXml${xmlConfigCounter}.xml`);
 	downloadLink.dataset.downloadurl = [
 		'text/plain',
 		downloadLink.download,
 		downloadLink.href,
-	].join(':')
-	downloadLink.click()
-	xmlConfigCounter++
-}
+	].join(':');
+	downloadLink.click();
+	xmlConfigCounter++;
+};
+
+export const uploadXml = (event) => {
+	const xmlFile = event.target.files[0];
+	const reader = new FileReader();
+
+	reader.readAsText(xmlFile);
+	reader.onload = function() {
+		const xmlDom = parseTextAsXml(reader.result);
+		console.log('xmlDom ', xmlDom);
+	};
+
+	reader.onerror = function() {
+		console.log(reader.error);
+	};
+
+	// ToDo
+};
