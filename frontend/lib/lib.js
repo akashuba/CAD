@@ -94,14 +94,52 @@ export const downloadXml = (storeObj) => {
 	xmlConfigCounter++;
 };
 
-export const uploadXml = (event) => {
+const prepareObjectToStore = (keyElement, nodes) => {
+	const regex = RegExp(`^${keyElement}C`, 'i');
+	const arrayOfElements = Array.from(nodes);
+	console.log('arrayOfElements , ', arrayOfElements);
+	const selectedElements = arrayOfElements.filter((node) => {
+		return regex.test(node.nodeName);
+	});
+	console.log('selectedElements ', selectedElements);
+	const objectForStore = {};
+	selectedElements.forEach((element) => {
+		const name = element.nodeName.replace(keyElement, '');
+		const content = element.textContent.replace(/\s/gi, '');
+
+		objectForStore[name] = content;
+	});
+
+	return {
+		[keyElement]: { ...objectForStore },
+	};
+};
+
+function removeTextNodes(xmlDom) {
+	const root = xmlDom.getElementsByTagName('root')[0];
+	const elements = root.childNodes;
+
+	if (elements.length > 0) {
+		Array.from(elements).forEach((element) => {
+			if (element.nodeType === 3) {
+				element.remove();
+			}
+		});
+	}
+
+	return elements;
+}
+
+export function uploadXml(event) {
 	const xmlFile = event.target.files[0];
 	const reader = new FileReader();
 
 	reader.readAsText(xmlFile);
 	reader.onload = function() {
 		const xmlDom = parseTextAsXml(reader.result);
-		console.log('xmlDom ', xmlDom);
+		const elements = removeTextNodes(xmlDom);
+
+		console.log('prepareObjectToStore', prepareObjectToStore('R1', elements));
 	};
 
 	reader.onerror = function() {
@@ -109,4 +147,4 @@ export const uploadXml = (event) => {
 	};
 
 	// ToDo
-};
+}
