@@ -97,15 +97,14 @@ export const downloadXml = (storeObj) => {
 const prepareObjectToStore = (keyElement, nodes) => {
 	const regex = RegExp(`^${keyElement}C`, 'i');
 	const arrayOfElements = Array.from(nodes);
-	console.log('arrayOfElements , ', arrayOfElements);
 	const selectedElements = arrayOfElements.filter((node) => {
 		return regex.test(node.nodeName);
 	});
-	console.log('selectedElements ', selectedElements);
 	const objectForStore = {};
+
 	selectedElements.forEach((element) => {
 		const name = element.nodeName.replace(keyElement, '');
-		const content = element.textContent.replace(/\s/gi, '');
+		const content = element.textContent.replace(/\s/g, '');
 
 		objectForStore[name] = content;
 	});
@@ -133,18 +132,29 @@ function removeTextNodes(xmlDom) {
 export function uploadXml(event) {
 	const xmlFile = event.target.files[0];
 	const reader = new FileReader();
+	let ventUnitsSupply = {};
+	let ventUnitsExhaust = {};
+	let generalSettings = {};
 
 	reader.readAsText(xmlFile);
 	reader.onload = function() {
 		const xmlDom = parseTextAsXml(reader.result);
 		const elements = removeTextNodes(xmlDom);
 
-		console.log('prepareObjectToStore', prepareObjectToStore('R1', elements));
+		for (let index = 1; index < 11; index++) {
+			const ventUnitName = xmlDom.getElementsByTagName(`R${index}C1`)[0].textContent.replace(/\s/g, '');
+			// console.log(xmlDom.getElementsByTagName(`R${index}C1`)[0].textContent.replace(/\s/gi, ''))
+			if (ventUnitName) {
+				ventUnitsSupply = {
+					...ventUnitsSupply,
+					...prepareObjectToStore(`R${index}`, elements),
+				};
+			}
+		}
+		console.log('ventUnitsSupply', ventUnitsSupply);
 	};
 
 	reader.onerror = function() {
 		console.log(reader.error);
 	};
-
-	// ToDo
 }
