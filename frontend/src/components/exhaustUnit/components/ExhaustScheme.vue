@@ -1,6 +1,6 @@
 <template>
 	<div class="exhaustScheme">
-		<div :class="`schemeContainer ${difRelayCheckbox ? 'schemeBgImg2' : 'schemeBgImg1'}`" />
+		<div class="schemeContainer schemeBgImg1" />
 		<img
 			class="frequencyСonverter"
 			src="../../../assets/vent/v_chp_EF.png"
@@ -12,6 +12,12 @@
 			src="../../../assets/vent/zaslonka.png"
 			v-show="airDamper"
 			alt="airDamper"
+		/>
+		<img
+			class="difRelayCheckbox"
+			src="../../../assets/vent/vyt_dp.png"
+			v-show="difRelayCheckbox"
+			alt="difRelayCheckbox"
 		/>
 	</div>
 </template>
@@ -49,10 +55,6 @@ export default {
 	background-image: url('../../../assets/vent/vyt.jpg');
 }
 
-.schemeBgImg2 {
-	background-image: url('../../../assets/vent/vyt_dP.jpg');
-}
-
 .frequencyСonverter {
 	position: absolute;
 	top: 96px;
@@ -63,5 +65,11 @@ export default {
 	position: absolute;
 	top: 46px;
 	left: 55px;
+}
+
+.difRelayCheckbox {
+	position: absolute;
+	top: 65px;
+    left: 31px;
 }
 </style>

@@ -34,7 +34,7 @@
 				<b-tab title="Комплектующие"><p>I'm the third tab</p></b-tab>
 			</b-tabs>
 			<div class="footer">
-				<b-button class="mt-3" variant="primary" @click="onOkClick">Закрыть</b-button>
+				<b-button class="mt-3" variant="primary" @click="onOkClick">Ок</b-button>
 			</div>
 		</b-modal>
 	</div>
