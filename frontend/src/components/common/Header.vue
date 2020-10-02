@@ -4,35 +4,44 @@
 			<label class="inputLabel" for="boardName">Щит автоматики</label>
 			<b-form-input
 				id="boardName"
-				name="boardName"
+				name="C1"
 				size="sm"
-				:value="boardName"
-				@input.native="onBoardNameChange"
+				:value="ventUnit['C1']"
+				@input.native="setInput"
 				class="custom-input"
 			></b-form-input>
 		</div>
 	</div>
 </template>
+
 <script>
+import { mutations } from '../../store/constants';
+
 export default {
 	name: 'Header',
 
-	data() {
-		return {
-			boardName: 'ЩАУ-1',
-		}
+	computed: {
+		ventUnit() {
+			return this.$store.getters.generalSettings;
+		},
 	},
 
-	onBoardNameChange(event) {
-		this.boardName = event.target.value
+	methods: {
+		setInput(event) {
+			this.$store.commit(mutations.SET_GENERAL_CONFIG, {
+				unit: event.target.name,
+				data: `${event.target.value}`,
+			});
+		},
 	},
-}
+};
 </script>
+
 <style scoped>
 .header {
 	height: 50px;
 	vertical-align: middle;
-    line-height: 50px;
+	line-height: 50px;
 }
 
 .configItem {

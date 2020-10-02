@@ -49,7 +49,7 @@
 						size="sm"
 						:id="fieldsIds.reservePump"
 						:name="fieldsIds.reservePump"
-						:checked="ventUnit[fieldsIds.reservePump]"
+						:checked="!!ventUnit[fieldsIds.reservePump]"
 						@change.native="setCheckbox"
 					>
 						Рез. насос

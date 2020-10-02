@@ -4,7 +4,7 @@
 			name="C18"
 			size="sm"
 			class="exhaustCheckbox"
-			:checked="ventUnit['C18']"
+			:checked="!!ventUnit['C18']"
 			@change.native="setCheckbox"
 		>
 			датчик влажности
@@ -13,7 +13,7 @@
 			name="C17"
 			size="sm"
 			class="exhaustCheckbox"
-			:checked="ventUnit['C17']"
+			:checked="!!ventUnit['C17']"
 			@change.native="setCheckbox"
 		>
 			датчик температуры
@@ -22,7 +22,7 @@
 			name="C9"
 			size="sm"
 			class="exhaustCheckbox"
-			:checked="ventUnit['C9']"
+			:checked="!!ventUnit['C9']"
 			@change.native="setCheckbox"
 		>
 			воздушная заслонка
@@ -32,7 +32,7 @@
 			name="C8"
 			size="sm"
 			class="exhaustCheckbox"
-			:checked="ventUnit['C8']"
+			:checked="!!ventUnit['C8']"
 			@change.native="setCheckbox"
 		>
 			диф. реле вентилятора
@@ -41,7 +41,7 @@
 			name="C5"
 			size="sm"
 			class="exhaustCheckbox"
-			:checked="ventUnit['C5']"
+			:checked="!!ventUnit['C5']"
 			@change.native="setCheckbox"
 		>
 			частотный преобразователь
@@ -50,7 +50,7 @@
 			name="C6"
 			size="sm"
 			class="exhaustCheckbox"
-			:checked="ventUnit['C6']"
+			:checked="!!ventUnit['C6']"
 			@change.native="setCheckbox"
 		>
 			резервный двигатель
@@ -59,7 +59,7 @@
 			name="C7"
 			size="sm"
 			class="exhaustCheckbox"
-			:checked="ventUnit['C7']"
+			:checked="!!ventUnit['C7']"
 			@change.native="setCheckbox"
 		>
 			выключатель безопасности

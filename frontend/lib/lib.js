@@ -73,6 +73,7 @@ export const serializeXMLDom = (xmlDom) => {
 
 export const downloadXml = (storeObj) => {
 	const xmlDom = parseTextAsXml(window.XMLTemplate);
+	const fileName = storeObj?.generalSettings?.R24?.C1 || 'ventConfigXml';
 	const flattenetStore = flattenStore(storeObj);
 	const updatedXmlDom = updateXmlDom(xmlDom, replaceCheckboxesValue(flattenetStore));
 	const serializedDom = serializeXMLDom(updatedXmlDom);
@@ -84,7 +85,7 @@ export const downloadXml = (storeObj) => {
 	});
 
 	downloadLink.setAttribute('href', window.URL.createObjectURL(bb));
-	downloadLink.setAttribute('download', `ventConfigXml${xmlConfigCounter}.xml`);
+	downloadLink.setAttribute('download', `${fileName}.xml`);
 	downloadLink.dataset.downloadurl = [
 		'text/plain',
 		downloadLink.download,
@@ -129,7 +130,7 @@ function removeTextNodes(xmlDom) {
 	return elements;
 }
 
-export function uploadXml(event) {
+export function uploadXml(event, uploadXMLMutation) {
 	const xmlFile = event.target.files[0];
 	const reader = new FileReader();
 	let ventUnitsSupply = {};
@@ -143,7 +144,7 @@ export function uploadXml(event) {
 
 		for (let index = 1; index < 11; index++) {
 			const ventUnitName = xmlDom.getElementsByTagName(`R${index}C1`)[0].textContent.replace(/\s/g, '');
-			// console.log(xmlDom.getElementsByTagName(`R${index}C1`)[0].textContent.replace(/\s/gi, ''))
+
 			if (ventUnitName) {
 				ventUnitsSupply = {
 					...ventUnitsSupply,
@@ -151,7 +152,28 @@ export function uploadXml(event) {
 				};
 			}
 		}
-		console.log('ventUnitsSupply', ventUnitsSupply);
+
+		for (let index = 11; index < 23; index++) {
+			const ventUnitName = xmlDom.getElementsByTagName(`R${index}C1`)[0].textContent.replace(/\s/g, '');
+
+			if (ventUnitName) {
+				ventUnitsExhaust = {
+					...ventUnitsExhaust,
+					...prepareObjectToStore(`R${index}`, elements),
+				};
+			}
+		}
+
+		generalSettings = {
+			...prepareObjectToStore(`R${24}`, elements)
+		}
+
+		uploadXMLMutation({
+			ventUnitsSupply,
+			ventUnitsExhaust,
+			generalSettings,
+		});
+
 	};
 
 	reader.onerror = function() {

@@ -5,7 +5,7 @@
 			name="C5"
 			size="sm"
 			class="motorCheckbox"
-			:checked="ventUnit['C5']"
+			:checked="!!ventUnit['C5']"
 			@change.native="setCheckbox"
 		>
 			частотный преобразователь
@@ -15,7 +15,7 @@
 			name="C6"
 			size="sm"
 			class="motorCheckbox"
-			:checked="ventUnit['C6']"
+			:checked="!!ventUnit['C6']"
 			@change.native="setCheckbox"
 		>
 			резервный двигатель
@@ -25,7 +25,7 @@
 			name="C7"
 			size="sm"
 			class="motorCheckbox"
-			:checked="ventUnit['C7']"
+			:checked="!!ventUnit['C7']"
 			@change.native="setCheckbox"
 		>
 			выключатель безопасности

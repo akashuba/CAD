@@ -5,7 +5,7 @@
 				class="checkbox"
 				id="C2"
 				name="C2"
-				:checked="settings['C2']"
+				:checked="!!settings['C2']"
 				@change.native="setCheckbox"
 			>
 				Два ввода
@@ -14,17 +14,17 @@
 				class="checkbox"
 				id="C3"
 				name="C3"
-				:checked="settings['C3']"
+				:checked="!!settings['C3']"
 				@change.native="setCheckbox"
 			>
 				ИБП
 			</b-form-checkbox>
-			<b-form-checkbox class="checkbox" id="reserve_1" name="reserve_1">
+			<!-- <b-form-checkbox class="checkbox" id="reserve_1" name="reserve_1">
 				Обратный сигнал заслонок
 			</b-form-checkbox>
 			<b-form-checkbox class="checkbox" id="reserve_2" name="reserve_2">
 				Обратный сигнал клапанов
-			</b-form-checkbox>
+			</b-form-checkbox> -->
 		</div>
 
 		<b-form-group label="Питание клапанов">
@@ -41,7 +41,7 @@
 	</div>
 </template>
 <script>
-import { mutations } from '../../../../store/constants'
+import { mutations } from '../../../../store/constants';
 
 export default {
 	name: 'GeneralSettings',
@@ -49,12 +49,12 @@ export default {
 	data() {
 		return {
 			selected: '220',
-		}
+		};
 	},
 
 	computed: {
 		settings() {
-			return this.$store.getters.generalSettings
+			return this.$store.getters.generalSettings;
 		},
 	},
 
@@ -63,17 +63,17 @@ export default {
 			this.$store.commit(mutations.SET_GENERAL_CONFIG, {
 				unit: event.target.name,
 				data: event.target.checked,
-			})
+			});
 		},
 
 		setRadio(event) {
 			this.$store.commit(mutations.SET_GENERAL_CONFIG, {
 				unit: event.target.name,
 				data: event.target.value,
-			})
+			});
 		},
 	},
-}
+};
 </script>
 <style scoped>
 .container {

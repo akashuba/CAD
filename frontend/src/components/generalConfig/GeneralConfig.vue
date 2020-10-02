@@ -6,14 +6,21 @@
 			>
 		</div>
 		<div class="exportImport">
-			<input accept=".xml" style="display: none" @change="onUploadXmlClick" type="file" name="uploadXml" id="uploadXml">
+			<input
+				accept=".xml"
+				style="display: none"
+				@change="onUploadXmlClick"
+				type="file"
+				name="uploadXml"
+				id="uploadXml"
+			/>
 			<b-button size="sm" variant="outline-dark" @click="importClick" class="button"
 				>Импортировать конфигурации</b-button
 			>
 			<b-button size="sm" variant="outline-dark" class="button" @click="saveConfigs"
 				>Сохранить конфигурации</b-button
 			>
-			<b-button size="sm" variant="outline-dark" class="button"
+			<b-button size="sm" variant="outline-dark" class="button" @click="resetConfig"
 				>Очистить конфигурации</b-button
 			>
 		</div>
@@ -42,6 +49,7 @@
 <script>
 import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue';
 import { downloadXml, uploadXml } from '../../../lib/lib';
+import { mutations } from '../../store/constants';
 
 export default {
 	name: 'GeneralConfig',
@@ -63,13 +71,21 @@ export default {
 			downloadXml(this.$store.getters.state);
 		},
 
+		resetConfig() {
+			this.$store.commit(mutations.RESET_CONFIG);
+		},
+
 		importClick() {
-			document.getElementById('uploadXml').click()
+			document.getElementById('uploadXml').click();
 		},
 
 		onUploadXmlClick(data) {
-			uploadXml(data)
-		}
+			uploadXml(data, this.uploadXMLMutation);
+		},
+
+		uploadXMLMutation(payload) {
+			this.$store.commit(mutations.UPLOAD_XML, payload);
+		},
 	},
 };
 </script>

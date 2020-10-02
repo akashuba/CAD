@@ -5,7 +5,7 @@
 			name="C20"
 			size="sm"
 			class="sensorCheckbox"
-			:checked="ventUnit['C20']"
+			:checked="!!ventUnit['C20']"
 			@change.native="setCheckbox"
 		>
 			обогрев заслонки
@@ -15,7 +15,7 @@
 			name="C8"
 			size="sm"
 			class="sensorCheckbox"
-			:checked="ventUnit['C8']"
+			:checked="!!ventUnit['C8']"
 			@change.native="setCheckbox"
 		>
 			Второй фильтр
@@ -25,7 +25,7 @@
 			name="C9"
 			size="sm"
 			class="sensorCheckbox"
-			:checked="ventUnit['C9']"
+			:checked="!!ventUnit['C9']"
 			@change.native="setCheckbox"
 		>
 			датчик наруж темп
@@ -35,7 +35,7 @@
 			name="C10"
 			size="sm"
 			class="sensorCheckbox"
-			:checked="ventUnit['C10']"
+			:checked="!!ventUnit['C10']"
 			@change.native="setCheckbox"
 		>
 			датчик CO
