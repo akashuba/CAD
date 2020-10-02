@@ -154,6 +154,8 @@ export default new Vuex.Store({
 			state.ventUnitsSupply = payload.ventUnitsSupply;
 			state.ventUnitsExhaust = payload.ventUnitsExhaust;
 			state.generalSettings = payload.generalSettings;
+			state.supplyCount = Object.keys(payload.ventUnitsSupply).length;
+			state.exhaustCount = Object.keys(payload.ventUnitsExhaust).length;
 		},
 
 		[mutations.RESET_CONFIG](state) {

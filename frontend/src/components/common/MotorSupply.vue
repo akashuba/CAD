@@ -7,6 +7,7 @@
 					<b-form-input
 						name="C2"
 						size="sm"
+						type="number"
 						:value="ventUnit['C2']"
 						@input.native="setInput"
 						class="custom-input"
@@ -17,6 +18,7 @@
 					<b-form-input
 						name="C3"
 						size="sm"
+						type="number"
 						:value="ventUnit['C3']"
 						@input.native="setInput"
 						class="custom-input"
@@ -33,6 +35,7 @@
 					<b-form-input
 						name="C59"
 						size="sm"
+						type="number"
 						:value="ventUnit['C59']"
 						@input.native="setInput"
 						class="custom-input"
@@ -43,6 +46,7 @@
 					<b-form-input
 						name="C60"
 						size="sm"
+						type="number"
 						:value="ventUnit['C60']"
 						@input.native="setInput"
 						class="custom-input"
