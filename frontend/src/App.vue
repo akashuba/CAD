@@ -1,19 +1,21 @@
 <template>
 	<div id="app">
-		<Header />
-		<div class="ventUnits">
-			<Supply />
-			<Exhaust />
+		<div class="appContainer">
+			<Header />
+			<div class="ventUnits">
+				<Supply />
+				<Exhaust />
+			</div>
+			<GeneralConfig />
 		</div>
-		<GeneralConfig />
 	</div>
 </template>
 
 <script>
-import Supply from './components/supplyUnit/Supply.vue'
-import Header from './components/common/Header.vue'
-import Exhaust from './components/exhaustUnit/Exhaust.vue'
-import GeneralConfig from './components/generalConfig/GeneralConfig.vue'
+import Supply from './components/supplyUnit/Supply.vue';
+import Header from './components/common/Header.vue';
+import Exhaust from './components/exhaustUnit/Exhaust.vue';
+import GeneralConfig from './components/generalConfig/GeneralConfig.vue';
 
 export default {
 	name: 'App',
@@ -23,7 +25,7 @@ export default {
 		Exhaust,
 		GeneralConfig,
 	},
-}
+};
 </script>
 
 <style>
@@ -34,9 +36,7 @@ export default {
 	text-align: center;
 	color: #2c3e50;
 	background-color: #bfcddb;
-	width: 1470px;
-	padding-right: 10px;
-	padding-left: 10px;
+	width: 100%;
 }
 
 label {
@@ -52,4 +52,12 @@ label {
 	line-height: 1.2;
 }
 
+.appContainer {
+	width: 1470px;
+	background-color: #bfcddb;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
