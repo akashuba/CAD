@@ -174,6 +174,8 @@ export function uploadXml(event, uploadXMLMutation) {
 			generalSettings,
 		});
 
+		event.target.value = '';
+
 	};
 
 	reader.onerror = function() {

@@ -37,8 +37,12 @@
 				<b-tab title="Общие настройки" active>
 					<GeneralSettings />
 				</b-tab>
-				<b-tab title="Теги обозначений"><p>I'm the second tab</p></b-tab>
-				<b-tab title="Комплектующие"><p>I'm the third tab</p></b-tab>
+				<b-tab title="Теги обозначений">
+					<TagNames />
+				</b-tab>
+				<b-tab title="Комплектующие">
+					<Accessories />
+				</b-tab>
 			</b-tabs>
 			<div class="footer">
 				<b-button class="mt-3" variant="primary" @click="onOkClick">Ок</b-button>
@@ -48,6 +52,8 @@
 </template>
 <script>
 import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue';
+import TagNames from './components/GeneralSettings/TagNames.vue';
+import Accessories from './components/GeneralSettings/Accessories.vue';
 import { downloadXml, uploadXml } from '../../../lib/lib';
 import { mutations } from '../../store/constants';
 
@@ -56,6 +62,8 @@ export default {
 
 	components: {
 		GeneralSettings,
+		TagNames,
+		Accessories,
 	},
 
 	methods: {
