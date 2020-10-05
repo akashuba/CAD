@@ -1,3 +1,3 @@
   
-release: cd ./frontend/ && npm run build
+release: cd ./frontend/ && npm install && npm run build
 web: node ./backend/index.js
