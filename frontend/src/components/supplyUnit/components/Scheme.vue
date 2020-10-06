@@ -25,12 +25,21 @@
 				class="frequencyСonverter"
 				:style="{ backgroundImage: `url(${images[frequencyСonverterSelect]})` }"
 			></div>
+			<div class="configItem">
+				<b-form-input
+					name="C1"
+					size="sm"
+					:value="ventUnit['C1']"
+					@input.native="setInput"
+					class="custom-input"
+				></b-form-input>
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-// import { mapState } from 'vuex'
+import { mutations } from '../../../store/constants';
 
 export default {
 	name: 'Scheme',
@@ -73,42 +82,52 @@ export default {
 				},
 				frequencyСonverter: require('../../../assets/vent/v_chp.png'),
 			},
-		}
+		};
 	},
+
+	methods: {
+		setInput(event) {
+			this.$store.commit(mutations.SET_SUPPLY_FIELD, {
+				unit: event.target.name,
+				data: `${event.target.value}`,
+			});
+		},
+	},
+
 	computed: {
 		ventUnit() {
-			return this.$store.getters.ventSupplyUnit
+			return this.$store.getters.ventSupplyUnit;
 		},
 
 		fcCheckbox() {
-			return this.$store.getters.ventSupplyUnit['C5']
+			return this.$store.getters.ventSupplyUnit['C5'];
 		},
 
 		contourOneSelect() {
-			return this.$store.getters.ventSupplyUnit['C11']
+			return this.$store.getters.ventSupplyUnit['C11'];
 		},
 
 		contourTwoSelect() {
-			return this.$store.getters.ventSupplyUnit['C21']
+			return this.$store.getters.ventSupplyUnit['C21'];
 		},
 
 		contourThreeSelect() {
-			return this.$store.getters.ventSupplyUnit['C31']
+			return this.$store.getters.ventSupplyUnit['C31'];
 		},
 
 		contourFourSelect() {
-			return this.$store.getters.ventSupplyUnit['C41']
+			return this.$store.getters.ventSupplyUnit['C41'];
 		},
 
 		contourFiveSelect() {
-			return this.$store.getters.ventSupplyUnit['C51']
+			return this.$store.getters.ventSupplyUnit['C51'];
 		},
 
 		frequencyСonverterSelect() {
-			return this.fcCheckbox ? 'frequencyСonverter' : ''
-		}
+			return this.fcCheckbox ? 'frequencyСonverter' : '';
+		},
 	},
-}
+};
 </script>
 
 <style scoped>
@@ -160,6 +179,17 @@ export default {
 	height: 69px;
 	width: 58px;
 	top: 105px;
-    left: 838px
+	left: 838px;
+}
+
+.configItem {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100px;
+}
+
+.custom-input {
+	text-align: center;
 }
 </style>

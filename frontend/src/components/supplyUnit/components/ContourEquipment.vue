@@ -61,8 +61,8 @@
 </template>
 
 <script>
-import { mutations } from '../../../store/constants'
-import PhaseSelector from '../../common/PhaseSelector.vue'
+import { mutations } from '../../../store/constants';
+import PhaseSelector from '../../common/PhaseSelector.vue';
 
 export default {
 	name: 'ContourEquipment',
@@ -72,7 +72,7 @@ export default {
 
 	computed: {
 		ventUnit() {
-			return this.$store.getters.ventSupplyUnit
+			return this.$store.getters.ventSupplyUnit;
 		},
 	},
 
@@ -90,22 +90,22 @@ export default {
 			this.$store.commit(mutations.SET_SUPPLY_FIELD, {
 				unit: event.target.name,
 				data: event.target.checked,
-			})
+			});
 		},
 		setInput(event) {
 			this.$store.commit(mutations.SET_SUPPLY_FIELD, {
 				unit: event.target.name,
 				data: `${event.target.value}`,
-			})
+			});
 		},
 		setSelect(event) {
 			this.$store.commit(mutations.SET_SUPPLY_FIELD, {
 				unit: event.target.name,
 				data: `${event.target.value}`,
-			})
+			});
 		},
 	},
-}
+};
 </script>
 
 <style scoped>

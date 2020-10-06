@@ -1,6 +1,16 @@
 <template>
 	<div class="exhaustScheme">
-		<div class="schemeContainer schemeBgImg1" />
+		<div class="schemeContainer schemeBgImg1">
+			<div class="configItem">
+				<b-form-input
+					name="C1"
+					size="sm"
+					:value="ventUnit['C1']"
+					@input.native="setInput"
+					class="custom-input"
+				></b-form-input>
+			</div>
+		</div>
 		<img
 			class="frequencyСonverter"
 			src="../../../assets/vent/v_chp_EF.png"
@@ -22,21 +32,35 @@
 	</div>
 </template>
 <script>
+import { mutations } from '../../../store/constants';
+
 export default {
 	name: 'ExhaustScheme',
 
-	computed: {
-		difRelayCheckbox() {
-			return this.$store.getters.ventExhaustUnit['C8']
-		},
-		airDamper() {
-			return this.$store.getters.ventExhaustUnit['C9']
-		},
-		frequencyСonverter() {
-			return this.$store.getters.ventExhaustUnit['C5']
+	methods: {
+		setInput(event) {
+			this.$store.commit(mutations.SET_EXHAUST_FIELD, {
+				unit: event.target.name,
+				data: `${event.target.value}`,
+			});
 		},
 	},
-}
+
+	computed: {
+		ventUnit() {
+			return this.$store.getters.ventExhaustUnit;
+		},
+		difRelayCheckbox() {
+			return this.$store.getters.ventExhaustUnit['C8'];
+		},
+		airDamper() {
+			return this.$store.getters.ventExhaustUnit['C9'];
+		},
+		frequencyСonverter() {
+			return this.$store.getters.ventExhaustUnit['C5'];
+		},
+	},
+};
 </script>
 <style scoped>
 .exhaustScheme {
@@ -70,6 +94,17 @@ export default {
 .difRelayCheckbox {
 	position: absolute;
 	top: 65px;
-    left: 31px;
+	left: 31px;
+}
+
+.configItem {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 100px;
+}
+
+.custom-input {
+	text-align: center;
 }
 </style>
