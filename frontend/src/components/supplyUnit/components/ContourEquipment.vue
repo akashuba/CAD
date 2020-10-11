@@ -19,6 +19,7 @@
 						:id="fieldsIds.current"
 						:name="fieldsIds.current"
 						size="sm"
+						type='number'
 						:value="ventUnit[fieldsIds.current]"
 						@input.native="setInput"
 						class="custom-input"
@@ -31,6 +32,7 @@
 						:id="fieldsIds.power"
 						:name="fieldsIds.power"
 						size="sm"
+						type='number'
 						:value="ventUnit[fieldsIds.power]"
 						@input.native="setInput"
 						class="custom-input"
