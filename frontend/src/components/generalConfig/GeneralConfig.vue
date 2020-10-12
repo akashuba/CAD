@@ -1,7 +1,11 @@
 <template>
 	<div class="generalConfigWrapper">
 		<div class="generalConfig">
-			<b-button size="sm" variant="outline-dark" class="button" @click="showGeneralConfigModal"
+			<b-button
+				size="sm"
+				variant="outline-dark"
+				class="button"
+				@click="showGeneralConfigModal"
 				>общие настройки</b-button
 			>
 		</div>
@@ -81,9 +85,16 @@ export default {
 		},
 
 		onGetDwawingsClick(data) {
-			console.log('onGetDwawingsClick ',JSON.stringify(data));
+			const formData = JSON.parse(JSON.stringify(data));
+			console.log('onGetDwawingsClick ', formData);
 
 			this.$refs['modalUserData'].hide();
+
+			this.$bvToast.toast(`Ваши чертежи будут отправленны на адрес ${formData.email}`, {
+				title: 'Отправка чертежей',
+				autoHideDelay: 5000,
+				appendToast: false,
+			});
 		},
 
 		saveConfigs() {

@@ -71,6 +71,41 @@ export const serializeXMLDom = (xmlDom) => {
 	return XMLS.serializeToString(xmlDom);
 };
 
+function removeTextNodes(xmlDom) {
+	const root = xmlDom.getElementsByTagName('root')[0];
+	const elements = root.childNodes;
+
+	if (elements.length > 0) {
+		Array.from(elements).forEach((element) => {
+			if (element.nodeType === 3) {
+				element.remove();
+			}
+		});
+	}
+
+	return elements;
+}
+
+const prepareObjectToStore = (keyElement, nodes) => {
+	const regex = RegExp(`^${keyElement}C`, 'i');
+	const arrayOfElements = Array.from(nodes);
+	const selectedElements = arrayOfElements.filter((node) => {
+		return regex.test(node.nodeName);
+	});
+	const objectForStore = {};
+
+	selectedElements.forEach((element) => {
+		const name = element.nodeName.replace(keyElement, '');
+		const content = element.textContent.replace(/\s/g, '');
+
+		objectForStore[name] = content;
+	});
+
+	return {
+		[keyElement]: { ...objectForStore },
+	};
+};
+
 export const downloadXml = (storeObj) => {
 	const xmlDom = parseTextAsXml(window.XMLTemplate);
 	const fileName = storeObj?.generalSettings?.R24?.C1 || 'ventConfigXml';
@@ -94,41 +129,6 @@ export const downloadXml = (storeObj) => {
 	downloadLink.click();
 	xmlConfigCounter++;
 };
-
-const prepareObjectToStore = (keyElement, nodes) => {
-	const regex = RegExp(`^${keyElement}C`, 'i');
-	const arrayOfElements = Array.from(nodes);
-	const selectedElements = arrayOfElements.filter((node) => {
-		return regex.test(node.nodeName);
-	});
-	const objectForStore = {};
-
-	selectedElements.forEach((element) => {
-		const name = element.nodeName.replace(keyElement, '');
-		const content = element.textContent.replace(/\s/g, '');
-
-		objectForStore[name] = content;
-	});
-
-	return {
-		[keyElement]: { ...objectForStore },
-	};
-};
-
-function removeTextNodes(xmlDom) {
-	const root = xmlDom.getElementsByTagName('root')[0];
-	const elements = root.childNodes;
-
-	if (elements.length > 0) {
-		Array.from(elements).forEach((element) => {
-			if (element.nodeType === 3) {
-				element.remove();
-			}
-		});
-	}
-
-	return elements;
-}
 
 export function uploadXml(event, uploadXMLMutation) {
 	const xmlFile = event.target.files[0];
