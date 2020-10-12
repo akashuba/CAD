@@ -1,8 +1,13 @@
 <template>
 	<div class="generalConfigWrapper">
 		<div class="generalConfig">
-			<b-button size="sm" variant="outline-dark" class="button" @click="showModal"
+			<b-button size="sm" variant="outline-dark" class="button" @click="showGeneralConfigModal"
 				>общие настройки</b-button
+			>
+		</div>
+		<div class="createDrawings">
+			<b-button size="sm" variant="outline-dark" class="button" @click="showUserDataModal"
+				>Создать чертежи</b-button
 			>
 		</div>
 		<div class="exportImport">
@@ -33,27 +38,24 @@
 			hide-footer
 			size="lg"
 		>
-			<b-tabs content-class="mt-3">
-				<b-tab title="Общие настройки" active>
-					<GeneralSettings />
-				</b-tab>
-				<b-tab title="Теги обозначений">
-					<TagNames />
-				</b-tab>
-				<b-tab title="Комплектующие">
-					<Accessories />
-				</b-tab>
-			</b-tabs>
-			<div class="footer">
-				<b-button class="mt-3" variant="primary" @click="onOkClick">Ок</b-button>
-			</div>
+			<GeneralSettingsModal @okClick="onOkClick" />
+		</b-modal>
+		<b-modal
+			ref="modalUserData"
+			id="modalUserData"
+			title="Создать чертежи"
+			ok-title="сохранить"
+			cancel-title="закрыть"
+			hide-footer
+			size="md"
+		>
+			<UserDataModal @getDrawings="onGetDwawingsClick" />
 		</b-modal>
 	</div>
 </template>
 <script>
-import GeneralSettings from './components/GeneralSettings/GeneralSettings.vue';
-import TagNames from './components/GeneralSettings/TagNames.vue';
-import Accessories from './components/GeneralSettings/Accessories.vue';
+import GeneralSettingsModal from './components/GeneralSettings/GeneralSettingsModal.vue';
+import UserDataModal from './components/UserData/UserDataModal.vue';
 import { downloadXml, uploadXml } from '../../../lib/lib';
 import { mutations } from '../../store/constants';
 
@@ -61,18 +63,27 @@ export default {
 	name: 'GeneralConfig',
 
 	components: {
-		GeneralSettings,
-		TagNames,
-		Accessories,
+		GeneralSettingsModal,
+		UserDataModal,
 	},
 
 	methods: {
-		showModal() {
+		showGeneralConfigModal() {
 			this.$refs['modalGeneralConfig'].show();
+		},
+
+		showUserDataModal() {
+			this.$refs['modalUserData'].show();
 		},
 
 		onOkClick() {
 			this.$refs['modalGeneralConfig'].hide();
+		},
+
+		onGetDwawingsClick(data) {
+			console.log('onGetDwawingsClick ',JSON.stringify(data));
+
+			this.$refs['modalUserData'].hide();
 		},
 
 		saveConfigs() {
@@ -112,6 +123,12 @@ export default {
 .exportImport {
 	display: flex;
 	flex-direction: column;
+}
+
+.createDrawings {
+	display: flex;
+	flex-direction: column;
+	margin-right: 20px;
 }
 
 .button {
