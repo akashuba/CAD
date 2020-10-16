@@ -1,1 +1,1 @@
-web: node ./backend/index.js
+web: cd ./backend npm i && node index.js
