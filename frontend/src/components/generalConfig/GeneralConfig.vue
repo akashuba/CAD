@@ -60,8 +60,9 @@
 <script>
 import GeneralSettingsModal from './components/GeneralSettings/GeneralSettingsModal.vue';
 import UserDataModal from './components/UserData/UserDataModal.vue';
-import { downloadXml, uploadXml } from '../../../lib/lib';
+import { downloadXml, uploadXml, getXml } from '../../../lib/lib';
 import { mutations } from '../../store/constants';
+import { sendXml } from '../../api/sendXml';
 
 export default {
 	name: 'GeneralConfig',
@@ -69,6 +70,12 @@ export default {
 	components: {
 		GeneralSettingsModal,
 		UserDataModal,
+	},
+
+	computed: {
+		settings() {
+			return this.$store.getters.generalSettings;
+		}
 	},
 
 	methods: {
@@ -84,12 +91,17 @@ export default {
 			this.$refs['modalGeneralConfig'].hide();
 		},
 
-		onGetDwawingsClick(data) {
+		async onGetDwawingsClick(data) {
 			const formData = JSON.parse(JSON.stringify(data));
-			console.log('onGetDwawingsClick ', formData);
-
+			const boardName = `${this.settings['C1']}.xml` || 'xmlFile.xml';
 			this.$refs['modalUserData'].hide();
+			
+			const result = await sendXml({...formData}, getXml(this.$store.getters.state), boardName)
 
+			this.showToast(formData);
+		},
+
+		showToast(formData) {
 			this.$bvToast.toast(`Ваши чертежи будут отправленны на адрес ${formData.email}`, {
 				title: 'Отправка чертежей',
 				autoHideDelay: 5000,

@@ -106,6 +106,19 @@ const prepareObjectToStore = (keyElement, nodes) => {
 	};
 };
 
+export function getXml(storeObj) {
+	const xmlDom = parseTextAsXml(window.XMLTemplate);
+	const flattenetStore = flattenStore(storeObj);
+	const updatedXmlDom = updateXmlDom(xmlDom, replaceCheckboxesValue(flattenetStore));
+	const serializedDom = serializeXMLDom(updatedXmlDom);
+
+	const bb = new Blob([serializedDom], {
+		type: 'text/xml',
+	});
+
+	return bb;
+}
+
 export const downloadXml = (storeObj) => {
 	const xmlDom = parseTextAsXml(window.XMLTemplate);
 	const fileName = storeObj?.generalSettings?.R24?.C1 || 'ventConfigXml';
