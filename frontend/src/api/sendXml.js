@@ -13,5 +13,5 @@ export async function sendXml({ name, email, projectName }, blob, blobName) {
 		body: formData,
 	});
 
-	return response.status;
+	return response;
 }

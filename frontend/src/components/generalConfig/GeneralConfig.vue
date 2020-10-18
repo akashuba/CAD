@@ -95,18 +95,31 @@ export default {
 			const formData = JSON.parse(JSON.stringify(data));
 			const boardName = `${this.settings['C1']}.xml` || 'xmlFile.xml';
 			this.$refs['modalUserData'].hide();
-			
-			const result = await sendXml({...formData}, getXml(this.$store.getters.state), boardName)
+			const result = await sendXml({...formData}, getXml(this.$store.getters.state), boardName);
 
-			this.showToast(formData);
+			if (result.ok) {
+				this.showSuccessToast(formData);
+			} else {
+				console.log(result.status, result.text());
+				this.showFailToast();
+			}
 		},
 
-		showToast(formData) {
+		showSuccessToast(formData) {
 			this.$bvToast.toast(`Ваши чертежи будут отправленны на адрес ${formData.email}`, {
 				title: 'Отправка чертежей',
 				autoHideDelay: 5000,
 				appendToast: false,
 			});
+		},
+
+		showFailToast() {
+			this.$bvToast.toast('При сохранении конфигураций произошла ошибка, попробуйте еще раз', {
+				title: 'Отправка чертежей',
+				autoHideDelay: 5000,
+				appendToast: false,
+				variant: 'warning'
+			})
 		},
 
 		saveConfigs() {

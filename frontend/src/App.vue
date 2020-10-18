@@ -25,7 +25,24 @@ export default {
 		Exhaust,
 		GeneralConfig,
 	},
+
+	created() {
+		this.fetchTemplate();
+	},
+
+	methods: {
+		async fetchTemplate() {
+			const result = await fetch('/VENT.xml');
+
+			if (result.ok) {
+				window.XMLTemplate = await result.text();
+			} else {
+				console.log(result.status, result.text());
+			}
+		}
+	}
 };
+
 </script>
 
 <style>
