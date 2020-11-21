@@ -100,7 +100,7 @@ export default {
 			if (result.ok) {
 				this.showSuccessToast(formData);
 			} else {
-				console.log(result.status, result.text());
+				console.log(result.status, await result.text());
 				this.showFailToast();
 			}
 		},

@@ -33,11 +33,12 @@ export default {
 	methods: {
 		async fetchTemplate() {
 			const result = await fetch('/VENT.xml');
+			const resultText = await result.text();
 
 			if (result.ok) {
-				window.XMLTemplate = await result.text();
+				window.XMLTemplate = resultText;
 			} else {
-				console.log(result.status, result.text());
+				console.log(result.status, resultText);
 			}
 		}
 	}
