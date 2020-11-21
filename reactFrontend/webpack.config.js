@@ -5,7 +5,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 module.exports = (env, argv) => {
 
 	return {
-		entry: './src/index.js',
+		entry: './src/index.tsx',
 		output: {
 			path: path.join(__dirname, '/dist/'),
 			filename: 'js/index_bundle.js',
@@ -20,6 +20,11 @@ module.exports = (env, argv) => {
 					},
 				},
 				{
+					test: /\.(tsx|ts)?$/,
+					use: 'ts-loader',
+					exclude: /node_modules/,
+				  },
+				{
 					test: /\.css$/,
 					use: ['style-loader', 'css-loader'],
 				},
@@ -33,7 +38,7 @@ module.exports = (env, argv) => {
 			],
 		},
 		resolve: {
-			extensions: ['.js', '.jsx']
+			extensions: ['.js', '.jsx', '.ts', '.tsx']
 		},
 		plugins: plugins(argv.mode),
 	}

@@ -1,5 +1,5 @@
 {
-  "name": "react-boilerplate",
+  "name": "react-cad-app",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -26,6 +26,8 @@
     "html-webpack-plugin": "^3.2.0",
     "nodemon": "^2.0.1",
     "style-loader": "^0.23.1",
+    "ts-loader": "^8.0.11",
+    "typescript": "^4.1.2",
     "webpack": "^4.30.0",
     "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.3.0",
@@ -34,6 +36,9 @@
   "dependencies": {
     "@babel/plugin-proposal-class-properties": "^7.7.4",
     "@babel/runtime": "^7.7.6",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@types/styled-components": "^5.1.4",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "react": "^16.8.6",
